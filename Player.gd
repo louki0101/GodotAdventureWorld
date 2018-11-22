@@ -13,6 +13,8 @@ var vel = Vector2()
 func _ready():
 	pass
 
+
+
 func _process(delta):	
 	#gravity
 	vel.y += GRAV

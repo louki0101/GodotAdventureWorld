@@ -43,9 +43,9 @@ custom_solver_bias = 0.0
 radius = 22.65
 height = 45.1473
 
-[node name="Player" type="KinematicBody2D" groups=[
-"player",
+[node name="Player" type="KinematicBody2D" index="0" groups=[
 "moves_bushes",
+"player",
 ]]
 
 input_pickable = false
