@@ -1,14 +1,15 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://objects/Player.gd" type="Script" id=1]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_idle.png" type="Texture" id=2]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_duck.png" type="Texture" id=3]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_jump.png" type="Texture" id=4]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_fall.png" type="Texture" id=5]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_walk1.png" type="Texture" id=6]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_walk2.png" type="Texture" id=7]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_walk1.png" type="Texture" id=4]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_walk2.png" type="Texture" id=5]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_jump.png" type="Texture" id=6]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_fall.png" type="Texture" id=7]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_swim1.png" type="Texture" id=8]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_swim2.png" type="Texture" id=9]
+[ext_resource path="res://sound/splash.wav" type="AudioStream" id=10]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -23,25 +24,25 @@ animations = [ {
 "name": "duck",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
 "loop": true,
 "name": "jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ) ],
+"frames": [ ExtResource( 7 ) ],
 "loop": true,
 "name": "fall",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 6 ), ExtResource( 7 ) ],
-"loop": true,
-"name": "walk",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": true,
 "name": "swim",
-"speed": 5.0
+"speed": 3.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
@@ -74,6 +75,17 @@ shape = SubResource( 2 )
 
 [node name="SplashPosition2D" type="Position2D" parent="." index="2"]
 
-position = Vector2( 0, 41 )
+position = Vector2( 2, 41 )
+
+[node name="SplashAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="3"]
+
+stream = ExtResource( 10 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
 
 

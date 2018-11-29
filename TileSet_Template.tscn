@@ -80,6 +80,7 @@ shape = SubResource( 1 )
 
 [node name="Water" type="Sprite" parent="." index="3"]
 
+modulate = Color( 1, 1, 1, 0.651922 )
 position = Vector2( 614.162, 116.314 )
 texture = ExtResource( 4 )
 _sections_unfolded = [ "Visibility" ]

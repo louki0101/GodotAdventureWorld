@@ -18,8 +18,13 @@ config/icon="res://icon.png"
 
 SceneLoader="*res://utils/SceneLoader.gd"
 
+[display]
 
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
 
 [rendering]
 
+quality/2d/use_pixel_snap=true
+environment/default_clear_color=Color( 0.324219, 0.635712, 1, 1 )
 environment/default_environment="res://default_env.tres"
