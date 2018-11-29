@@ -18,7 +18,10 @@ var splash_scn = preload("res://sfx/SplashParticles2D.tscn")
 var vel = Vector2()
 
 func _ready():
-	pass
+	if SceneLoader.spawn_group_name:
+		var spawn_target = get_tree().get_nodes_in_group(SceneLoader.spawn_group_name).front()
+		position = spawn_target.position
+
 
 
 func entered_water():
