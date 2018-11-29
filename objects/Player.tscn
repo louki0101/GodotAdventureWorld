@@ -1,0 +1,79 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://objects/Player.gd" type="Script" id=1]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_idle.png" type="Texture" id=2]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_duck.png" type="Texture" id=3]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_jump.png" type="Texture" id=4]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_fall.png" type="Texture" id=5]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_walk1.png" type="Texture" id=6]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_walk2.png" type="Texture" id=7]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_swim1.png" type="Texture" id=8]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_swim2.png" type="Texture" id=9]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "duck",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "jump",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "fall",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "swim",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 22.65
+height = 45.1473
+
+[node name="Player" type="KinematicBody2D" groups=[
+"player",
+"moves_bushes",
+]]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.001
+script = ExtResource( 1 )
+_sections_unfolded = [ "collision" ]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
+
+position = Vector2( 0, -9 )
+frames = SubResource( 1 )
+animation = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+
+shape = SubResource( 2 )
+
+[node name="SplashPosition2D" type="Position2D" parent="." index="2"]
+
+position = Vector2( 0, 41 )
+
+

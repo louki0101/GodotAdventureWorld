@@ -80,8 +80,9 @@ shape = SubResource( 1 )
 
 [node name="Water" type="Sprite" parent="." index="3"]
 
-position = Vector2( 614.162, 116.754 )
+position = Vector2( 614.162, 116.314 )
 texture = ExtResource( 4 )
+_sections_unfolded = [ "Visibility" ]
 __meta__ = {
 "_edit_group_": true
 }

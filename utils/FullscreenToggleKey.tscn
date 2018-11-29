@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends Node
+
+export (bool) var fullscreen_on_start = true
+
+func _ready():
+	OS.window_fullscreen = fullscreen_on_start
+	
+	if InputMap.has_action(\"fullscreen_toggle\") == false:
+		print('Adding fullscreen_toggle action...')
+		InputMap.add_action(\"fullscreen_toggle\")
+		var exitEvent = InputEventKey.new()
+		exitEvent.set_scancode(KEY_F)
+		InputMap.action_add_event(\"fullscreen_toggle\", exitEvent)
+
+func _process(delta):
+	if Input.is_action_just_pressed(\"fullscreen_toggle\"):
+		OS.window_fullscreen = !OS.window_fullscreen
+"
+
+[node name="FullscreenToggleKey" type="Node"]
+
+script = SubResource( 1 )
+fullscreen_on_start = true
+
+

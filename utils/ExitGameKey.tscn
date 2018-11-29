@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends Node
+
+func _ready():
+	if InputMap.has_action(\"game_exit\") == false:
+		print('Adding game_exit action...')
+		InputMap.add_action(\"game_exit\")
+		var exitEvent = InputEventKey.new()
+		exitEvent.set_scancode(KEY_ESCAPE)
+		InputMap.action_add_event(\"game_exit\", exitEvent)
+
+func _process(delta):
+	if Input.is_action_just_pressed(\"game_exit\"):
+		get_tree().quit()
+	
+
+"
+
+[node name="ExitGameKey" type="Node"]
+
+script = SubResource( 1 )
+
+
