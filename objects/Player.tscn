@@ -1,15 +1,17 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://objects/Player.gd" type="Script" id=1]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_idle.png" type="Texture" id=2]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_duck.png" type="Texture" id=3]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_walk1.png" type="Texture" id=4]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_walk2.png" type="Texture" id=5]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_jump.png" type="Texture" id=6]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_fall.png" type="Texture" id=7]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_hurt.png" type="Texture" id=3]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_jump.png" type="Texture" id=4]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_fall.png" type="Texture" id=5]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_walk1.png" type="Texture" id=6]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_walk2.png" type="Texture" id=7]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_swim1.png" type="Texture" id=8]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_swim2.png" type="Texture" id=9]
-[ext_resource path="res://sound/splash.wav" type="AudioStream" id=10]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_duck.png" type="Texture" id=10]
+[ext_resource path="res://sound/splash.wav" type="AudioStream" id=11]
+[ext_resource path="res://objects/HUDCanvasLayer.tscn" type="PackedScene" id=12]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -21,28 +23,33 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 3 ) ],
 "loop": true,
-"name": "duck",
+"name": "hurt",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
-"loop": true,
-"name": "walk",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 6 ) ],
+"frames": [ ExtResource( 4 ) ],
 "loop": true,
 "name": "jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ) ],
+"frames": [ ExtResource( 5 ) ],
 "loop": true,
 "name": "fall",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "walk",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": true,
 "name": "swim",
 "speed": 3.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "duck",
+"speed": 5.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
@@ -51,9 +58,114 @@ custom_solver_bias = 0.0
 radius = 22.65
 height = 45.1473
 
+[sub_resource type="Animation" id=3]
+
+resource_name = "_SETUP"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -9 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AnimatedSprite:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+
+resource_name = "flash"
+length = 1.2
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.364627 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.364627 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.364627 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+
+resource_name = "pass_out"
+length = 1.5
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -9 ), Vector2( -44, 27 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -90.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AnimatedSprite:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1.4, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ "hurt", "hurt", "idle" ]
+}
+
 [node name="Player" type="KinematicBody2D" index="0" groups=[
-"player",
 "moves_bushes",
+"player",
 ]]
 
 input_pickable = false
@@ -68,6 +180,7 @@ _sections_unfolded = [ "collision" ]
 position = Vector2( 0, -9 )
 frames = SubResource( 1 )
 animation = "idle"
+_sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
@@ -79,7 +192,7 @@ position = Vector2( 2, 41 )
 
 [node name="SplashAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="3"]
 
-stream = ExtResource( 10 )
+stream = ExtResource( 11 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
@@ -87,5 +200,19 @@ max_distance = 2000.0
 attenuation = 1.0
 bus = "Master"
 area_mask = 1
+
+[node name="HUDCanvasLayer" parent="." index="4" instance=ExtResource( 12 )]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5"]
+
+root_node = NodePath("..")
+autoplay = "_SETUP"
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/_SETUP = SubResource( 3 )
+anims/flash = SubResource( 5 )
+anims/pass_out = SubResource( 4 )
+blend_times = [  ]
 
 

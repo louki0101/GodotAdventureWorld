@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://utils/ExitGameKey.tscn" type="PackedScene" id=1]
 [ext_resource path="res://utils/FullscreenToggleKey.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://objects/Bush.tscn" type="PackedScene" id=5]
 [ext_resource path="res://objects/GoalFlag.tscn" type="PackedScene" id=6]
 [ext_resource path="res://objects/WaterArea2D.tscn" type="PackedScene" id=7]
+[ext_resource path="res://objects/SpikesArea2D.tscn" type="PackedScene" id=8]
 
 [node name="Level_1" type="Node2D"]
 
@@ -103,6 +104,10 @@ target_spawn_group = null
 [node name="WaterArea2D" parent="StaticObjects" index="4" instance=ExtResource( 7 )]
 
 position = Vector2( 210.206, 630.518 )
+
+[node name="SpikesArea2D" parent="StaticObjects" index="5" instance=ExtResource( 8 )]
+
+position = Vector2( 616.785, 525.731 )
 
 [node name="SpawnPosition2D" type="Position2D" parent="." index="4" groups=[
 "second_spawn",

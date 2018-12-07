@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+#movement
+var vel = Vector2()
 var GRAV = 1000
 var GRAV_MAX = 20000
 var MAX_SPEED = 20000
@@ -8,19 +10,52 @@ var ACCELERATION = 500
 var UP_VECTOR = Vector2(0,-1)
 var JUMP_HEIGHT = -39000
 
+#water
 var is_in_water = false
 var SWIM_HEIGHT = -8000
-
-
 var splash_scn = preload("res://sfx/SplashParticles2D.tscn")
 
 
-var vel = Vector2()
+#health
+var health = 3
+var KNOCKBACK = 8000
+var is_in_knockback = false
+var is_passed_out = false
+
+
+
 
 func _ready():
+	get_node("HUDCanvasLayer").update(health)	
+	
 	if SceneLoader.spawn_group_name:
 		var spawn_target = get_tree().get_nodes_in_group(SceneLoader.spawn_group_name).front()
 		position = spawn_target.position
+
+
+
+func hurt(amount = 1):
+	if is_in_knockback: return
+	health -= amount
+	get_node("HUDCanvasLayer").update(health)
+	
+	if health <= 0: pass_out()
+	else: knockback()
+
+
+func pass_out():
+	print('player passed out.')
+	is_passed_out = true
+	get_node("AnimationPlayer").play("pass_out")
+
+func knockback():
+	is_in_knockback = true
+	get_node("AnimationPlayer").play("flash")
+	vel.y = -(KNOCKBACK*1)
+	if get_node("AnimatedSprite").flip_h == true: vel.x = KNOCKBACK
+	else: vel.x = -KNOCKBACK
+	yield(get_node("AnimationPlayer"), "animation_finished")
+	is_in_knockback = false
 
 
 
@@ -51,6 +86,12 @@ func _process(delta):
 		vel.y = min(vel.y + (GRAV/5), GRAV_MAX/5)
 	else:
 		vel.y = min(vel.y + GRAV, GRAV_MAX)
+	
+	
+	if is_passed_out: 
+		vel.x = 0
+		return
+		
 	
 	
 	if is_on_wall():
