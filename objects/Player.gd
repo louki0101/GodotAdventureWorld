@@ -17,7 +17,7 @@ var splash_scn = preload("res://sfx/SplashParticles2D.tscn")
 
 
 #health
-var health = 3
+var health = 2
 var KNOCKBACK = 8000
 var is_in_knockback = false
 var is_passed_out = false
@@ -47,6 +47,11 @@ func pass_out():
 	print('player passed out.')
 	is_passed_out = true
 	get_node("AnimationPlayer").play("pass_out")
+	yield(get_node("AnimationPlayer"), "animation_finished")
+	get_node("AnimationPlayer").play("game_over")
+	yield(get_node("AnimationPlayer"), "animation_finished")
+	print('GO TO MAIN MENU!')
+	
 
 func knockback():
 	is_in_knockback = true
