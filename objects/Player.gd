@@ -50,7 +50,7 @@ func pass_out():
 	yield(get_node("AnimationPlayer"), "animation_finished")
 	get_node("AnimationPlayer").play("game_over")
 	yield(get_node("AnimationPlayer"), "animation_finished")
-	print('GO TO MAIN MENU!')
+	SceneLoader.load_scene("res://main_menu.tscn", null)
 	
 
 func knockback():
