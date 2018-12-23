@@ -1,18 +1,7 @@
-extends KinematicBody2D
+extends "res://actors/Actor.gd"
 
 
-#movement
-var vel = Vector2()
-var GRAV = 1000
-var GRAV_MAX = 20000
-var MAX_SPEED = 20000
-var ACCELERATION = 500
 
-var UP_VECTOR = Vector2(0,-1)
-var JUMP_HEIGHT = -39000
-
-
-onready var sprite = get_node("AnimatedSprite")
 
 
 func _ready():
@@ -28,7 +17,7 @@ func _on_DamageArea2D_body_entered(body):
 
 
 
-func _physics_process(delta):
+func actor_behavior(delta):
 	#gravity	
 	vel.y = min(vel.y + GRAV, GRAV_MAX)
 	
@@ -45,5 +34,5 @@ func _physics_process(delta):
 		#left
 		vel.x = max(vel.x - ACCELERATION, -MAX_SPEED)
 	
-	move_and_slide(vel * delta, UP_VECTOR)
+	
 

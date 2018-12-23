@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=2]
 
-[ext_resource path="res://objects/Player.gd" type="Script" id=1]
+[ext_resource path="res://actors/Player.gd" type="Script" id=1]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_idle.png" type="Texture" id=2]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_hurt.png" type="Texture" id=3]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_duck.png" type="Texture" id=4]
