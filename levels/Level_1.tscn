@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://utils/ExitGameKey.tscn" type="PackedScene" id=1]
 [ext_resource path="res://utils/FullscreenToggleKey.tscn" type="PackedScene" id=2]
@@ -8,8 +8,9 @@
 [ext_resource path="res://objects/GoalFlag.tscn" type="PackedScene" id=6]
 [ext_resource path="res://objects/WaterArea2D.tscn" type="PackedScene" id=7]
 [ext_resource path="res://objects/SpikesArea2D.tscn" type="PackedScene" id=8]
+[ext_resource path="res://actors/EnemySnail.tscn" type="PackedScene" id=9]
 
-[node name="Level_1" type="Node2D" index="0"]
+[node name="Level_1" type="Node2D"]
 
 __meta__ = {
 "_edit_lock_": true
@@ -114,5 +115,9 @@ position = Vector2( 616.785, 525.731 )
 ]]
 
 position = Vector2( 1404.68, 508.568 )
+
+[node name="EnemySnail" parent="." index="5" instance=ExtResource( 9 )]
+
+position = Vector2( 968, 509 )
 
 
