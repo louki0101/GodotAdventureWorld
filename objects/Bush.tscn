@@ -3,7 +3,6 @@
 [ext_resource path="res://objects/Bush.gd" type="Script" id=1]
 [ext_resource path="res://art/other/bush.png" type="Texture" id=2]
 
-
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
@@ -40,7 +39,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 1.1, 1.1 ), Vector2( 1, 1 ) ]
 }
 
-[node name="Bush" type="Area2D" index="0"]
+[node name="Bush" type="Area2D"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -50,6 +49,7 @@ angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
+_sections_unfolded = [ "Collision" ]
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 

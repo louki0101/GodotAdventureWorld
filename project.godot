@@ -23,6 +23,10 @@ SceneLoader="*res://utils/SceneLoader.gd"
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
+[layer_names]
+
+2d_physics/layer_2="ground"
+
 [rendering]
 
 quality/2d/use_pixel_snap=true

@@ -36,6 +36,7 @@ script = ExtResource( 1 )
 
 frames = SubResource( 1 )
 animation = "default"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
@@ -51,6 +52,7 @@ linear_damp = 0.1
 angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea2D" index="0"]
 
@@ -70,6 +72,27 @@ max_distance = 2000.0
 attenuation = 1.0
 bus = "Master"
 area_mask = 1
+
+[node name="RayPivot" type="Node2D" parent="." index="5"]
+
+_sections_unfolded = [ "Transform" ]
+
+[node name="FrontRayCast2D" type="RayCast2D" parent="RayPivot" index="0"]
+
+position = Vector2( -27.5875, 12.1453 )
+enabled = true
+exclude_parent = true
+cast_to = Vector2( -10, 0 )
+collision_mask = 2
+_sections_unfolded = [ "Transform" ]
+
+[node name="DownRayCast2D" type="RayCast2D" parent="RayPivot" index="1"]
+
+position = Vector2( -24.0511, 16.3878 )
+enabled = true
+exclude_parent = true
+cast_to = Vector2( 0, 10 )
+collision_mask = 2
 
 [connection signal="body_entered" from="DamageArea2D" to="." method="_on_DamageArea2D_body_entered"]
 

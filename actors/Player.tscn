@@ -5,11 +5,11 @@
 [ext_resource path="res://art/Adventurer/Poses/adventurer_hurt.png" type="Texture" id=3]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_duck.png" type="Texture" id=4]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_fall.png" type="Texture" id=5]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_walk1.png" type="Texture" id=6]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_walk2.png" type="Texture" id=7]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_swim1.png" type="Texture" id=6]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_swim2.png" type="Texture" id=7]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_jump.png" type="Texture" id=8]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_swim1.png" type="Texture" id=9]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_swim2.png" type="Texture" id=10]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_walk1.png" type="Texture" id=9]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_walk2.png" type="Texture" id=10]
 [ext_resource path="res://sound/splash.wav" type="AudioStream" id=11]
 [ext_resource path="res://objects/HUDCanvasLayer.tscn" type="PackedScene" id=12]
 [ext_resource path="res://art/hud/title_GameOver.png" type="Texture" id=13]
@@ -39,8 +39,8 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": true,
-"name": "walk",
-"speed": 5.0
+"name": "swim",
+"speed": 3.0
 }, {
 "frames": [ ExtResource( 8 ) ],
 "loop": true,
@@ -49,8 +49,8 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 9 ), ExtResource( 10 ) ],
 "loop": true,
-"name": "swim",
-"speed": 3.0
+"name": "walk",
+"speed": 5.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
@@ -219,8 +219,8 @@ tracks/2/keys = {
 }
 
 [node name="Player" type="KinematicBody2D" groups=[
-"moves_bushes",
 "player",
+"moves_bushes",
 ]]
 
 input_pickable = false
@@ -228,7 +228,7 @@ collision_layer = 1
 collision_mask = 1
 collision/safe_margin = 0.001
 script = ExtResource( 1 )
-_sections_unfolded = [ "collision" ]
+_sections_unfolded = [ "Collision", "collision" ]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
 

@@ -2,12 +2,16 @@ extends "res://actors/Actor.gd"
 
 
 
+onready var front_ray = get_node("RayPivot/FrontRayCast2D")
+onready var down_ray = get_node("RayPivot/DownRayCast2D")
+onready var ray_pivot = get_node("RayPivot")
 
 
 func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
-	pass
+	MAX_SPEED = 6000
+	ACCELERATION = 200
+
+
 
 
 func _on_DamageArea2D_body_entered(body):
@@ -25,6 +29,19 @@ func actor_behavior(delta):
 	
 	if is_on_wall():
 		vel.x = 0
+	
+	
+	if front_ray.is_colliding():
+		vel.x = 0
+		sprite.flip_h = not sprite.flip_h
+		ray_pivot.scale.x = ray_pivot.scale.x * -1
+	
+	
+	if is_on_floor() and down_ray.is_colliding() == false:
+		print('found ledge')
+		vel.x = 0
+		sprite.flip_h = not sprite.flip_h
+		ray_pivot.scale.x = ray_pivot.scale.x * -1
 	
 	
 	if sprite.flip_h == true:
