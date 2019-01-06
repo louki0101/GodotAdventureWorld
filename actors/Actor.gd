@@ -4,7 +4,7 @@ extends KinematicBody2D
 #movement
 var vel = Vector2()
 var GRAV = 1000
-var GRAV_MAX = 20000
+var GRAV_MAX = 30000
 var MAX_SPEED = 20000
 var ACCELERATION = 500
 
@@ -50,14 +50,12 @@ func hurt(amount = 1):
 
 
 func pass_out():
-	print('player passed out.')
+	print('general passed out.')
 	is_passed_out = true
-	get_node("AnimationPlayer").play("pass_out")
-	yield(get_node("AnimationPlayer"), "animation_finished")
-	get_node("AnimationPlayer").play("game_over")
-	yield(get_node("AnimationPlayer"), "animation_finished")
-	SceneLoader.load_scene("res://main_menu.tscn", null)
-	
+	if get_node("AnimationPlayer"):
+		get_node("AnimationPlayer").play("pass_out")
+		yield(get_node("AnimationPlayer"), "animation_finished")
+	queue_free()
 
 func knockback():
 	is_in_knockback = true

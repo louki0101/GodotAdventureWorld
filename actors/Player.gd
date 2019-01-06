@@ -12,6 +12,22 @@ func _ready():
 
 
 
+onready var feet_rays = get_node("FeetRays")
+
+func check_jump_attack():
+	for ray in feet_rays.get_children():
+		if ray is RayCast2D and ray.is_colliding():
+			print('jump attack!')
+			player_jump()
+			var target = ray.get_collider()
+			if target and target.has_method("hurt"): target.hurt()
+			return
+
+
+func player_jump():
+	vel.y = JUMP_HEIGHT
+	get_node("AnimatedSprite").play("jump")
+
 
 
 
@@ -67,13 +83,22 @@ func actor_behavior(delta):
 			vel.y = 10
 			
 			if Input.is_action_just_pressed("ui_accept"):
-				vel.y = JUMP_HEIGHT
-				get_node("AnimatedSprite").play("jump")
+				player_jump()
 		else: #in the air...
+			check_jump_attack()
 	#		if vel.y > 0:
 	#			get_node("AnimatedSprite").play("fall")
 			
 			if is_on_ceiling():
 				vel.y = 0
-	
-	
+
+
+
+func pass_out():
+	print('player passed out.')
+	is_passed_out = true
+	get_node("AnimationPlayer").play("pass_out")
+	yield(get_node("AnimationPlayer"), "animation_finished")
+	get_node("AnimationPlayer").play("game_over")
+	yield(get_node("AnimationPlayer"), "animation_finished")
+	SceneLoader.load_scene("res://main_menu.tscn", null)

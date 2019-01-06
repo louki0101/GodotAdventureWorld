@@ -28,7 +28,7 @@ fullscreen_on_start = false
 
 [node name="Player" parent="." index="1" instance=ExtResource( 3 )]
 
-position = Vector2( 885.992, 490.778 )
+position = Vector2( 887.992, 499.778 )
 
 [node name="Camera2D" type="Camera2D" parent="Player" index="2"]
 

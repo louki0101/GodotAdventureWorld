@@ -4,12 +4,12 @@
 [ext_resource path="res://art/Adventurer/Poses/adventurer_idle.png" type="Texture" id=2]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_hurt.png" type="Texture" id=3]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_duck.png" type="Texture" id=4]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_fall.png" type="Texture" id=5]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_swim1.png" type="Texture" id=6]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_swim2.png" type="Texture" id=7]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_jump.png" type="Texture" id=8]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_walk1.png" type="Texture" id=9]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_walk2.png" type="Texture" id=10]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_jump.png" type="Texture" id=5]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_fall.png" type="Texture" id=6]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_walk1.png" type="Texture" id=7]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_walk2.png" type="Texture" id=8]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_swim1.png" type="Texture" id=9]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_swim2.png" type="Texture" id=10]
 [ext_resource path="res://sound/splash.wav" type="AudioStream" id=11]
 [ext_resource path="res://objects/HUDCanvasLayer.tscn" type="PackedScene" id=12]
 [ext_resource path="res://art/hud/title_GameOver.png" type="Texture" id=13]
@@ -34,23 +34,23 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
+"name": "jump",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
 "name": "fall",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 7 ) ],
+"frames": [ ExtResource( 7 ), ExtResource( 8 ) ],
 "loop": true,
-"name": "swim",
-"speed": 3.0
-}, {
-"frames": [ ExtResource( 8 ) ],
-"loop": true,
-"name": "jump",
+"name": "walk",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 9 ), ExtResource( 10 ) ],
 "loop": true,
-"name": "walk",
-"speed": 5.0
+"name": "swim",
+"speed": 3.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
@@ -219,8 +219,8 @@ tracks/2/keys = {
 }
 
 [node name="Player" type="KinematicBody2D" groups=[
-"player",
 "moves_bushes",
+"player",
 ]]
 
 input_pickable = false
@@ -315,5 +315,31 @@ size_flags_vertical = 1
 texture = ExtResource( 13 )
 stretch_mode = 0
 _sections_unfolded = [ "Visibility" ]
+
+[node name="FeetRays" type="Node2D" parent="." index="7"]
+
+[node name="RayCast2D" type="RayCast2D" parent="FeetRays" index="0"]
+
+position = Vector2( 0, 41 )
+enabled = true
+exclude_parent = true
+cast_to = Vector2( 0, 10 )
+collision_mask = 4
+
+[node name="RayCast2D2" type="RayCast2D" parent="FeetRays" index="1"]
+
+position = Vector2( 16, 41 )
+enabled = true
+exclude_parent = true
+cast_to = Vector2( 0, 10 )
+collision_mask = 4
+
+[node name="RayCast2D3" type="RayCast2D" parent="FeetRays" index="2"]
+
+position = Vector2( -14, 41 )
+enabled = true
+exclude_parent = true
+cast_to = Vector2( 0, 10 )
+collision_mask = 4
 
 

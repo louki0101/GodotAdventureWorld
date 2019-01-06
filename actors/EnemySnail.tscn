@@ -22,15 +22,16 @@ extents = Vector2( 26.6738, 15.9287 )
 [sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
-extents = Vector2( 31.5153, 20.2005 )
+extents = Vector2( 31.5153, 17.4654 )
 
 [node name="EnemySnail" type="KinematicBody2D" index="0"]
 
 input_pickable = false
-collision_layer = 1
+collision_layer = 5
 collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "collision" ]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
 
@@ -56,6 +57,7 @@ _sections_unfolded = [ "Collision" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea2D" index="0"]
 
+position = Vector2( 0, 3 )
 shape = SubResource( 3 )
 
 [node name="SplashPosition2D" type="Position2D" parent="." index="3"]

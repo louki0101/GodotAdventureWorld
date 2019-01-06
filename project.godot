@@ -26,6 +26,7 @@ window/stretch/aspect="keep"
 [layer_names]
 
 2d_physics/layer_2="ground"
+2d_physics/layer_3="enemy"
 
 [rendering]
 
