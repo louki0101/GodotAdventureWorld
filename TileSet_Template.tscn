@@ -1,9 +1,12 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://art/tiles/grassMid.png" type="Texture" id=1]
 [ext_resource path="res://art/tiles/grassCenter.png" type="Texture" id=2]
-[ext_resource path="res://art/tiles/castleCenter.png" type="Texture" id=3]
-[ext_resource path="res://art/tiles/liquidWater.png" type="Texture" id=4]
+[ext_resource path="res://art/tiles/nauticalTile_160.png" type="Texture" id=3]
+[ext_resource path="res://art/tiles/castleCenter.png" type="Texture" id=4]
+[ext_resource path="res://art/tiles/platformPack_tile040.png" type="Texture" id=5]
+[ext_resource path="res://art/tiles/liquidWater.png" type="Texture" id=6]
+[ext_resource path="res://art/tiles/solid_color.png" type="Texture" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -56,10 +59,32 @@ bounce = 0.0
 
 shape = SubResource( 1 )
 
-[node name="Stone" type="Sprite" parent="." index="2"]
+[node name="Wood" type="Sprite" parent="." index="2"]
+
+position = Vector2( 252.701, 277.588 )
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Wood" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wood/StaticBody2D" index="0"]
+
+shape = SubResource( 1 )
+
+[node name="Stone" type="Sprite" parent="." index="3"]
 
 position = Vector2( 426.43, 111.312 )
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -78,14 +103,43 @@ bounce = 0.0
 
 shape = SubResource( 1 )
 
-[node name="Water" type="Sprite" parent="." index="3"]
+[node name="Brick" type="Sprite" parent="." index="4"]
+
+position = Vector2( 422.747, 268.463 )
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Brick" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Brick/StaticBody2D" index="0"]
+
+shape = SubResource( 1 )
+
+[node name="Water" type="Sprite" parent="." index="5"]
 
 modulate = Color( 1, 1, 1, 0.651922 )
 position = Vector2( 614.162, 116.314 )
-texture = ExtResource( 4 )
+texture = ExtResource( 6 )
 _sections_unfolded = [ "Visibility" ]
 __meta__ = {
 "_edit_group_": true
 }
+
+[node name="Black" type="Sprite" parent="." index="6"]
+
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 777.158, 94.5358 )
+texture = ExtResource( 7 )
+_sections_unfolded = [ "Visibility" ]
 
 

@@ -12,6 +12,21 @@ func _ready():
 
 
 
+
+func teleport_to(target_pos):
+	get_node("AnimationPlayer").play("FadeOut")
+	yield(get_node("AnimationPlayer"), "animation_finished")
+	position = target_pos
+	get_node("AnimationPlayer").play("FadeIn")
+
+
+
+
+
+
+
+
+
 onready var feet_rays = get_node("FeetRays")
 
 func check_jump_attack():

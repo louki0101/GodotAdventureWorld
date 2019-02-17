@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://objects/Door.gd" type="Script" id=1]
+[ext_resource path="res://art/tiles/door_openTop.png" type="Texture" id=2]
+[ext_resource path="res://art/tiles/door_openMid.png" type="Texture" id=3]
+[ext_resource path="res://art/other/PopupBubble.png" type="Texture" id=4]
+[ext_resource path="res://art/icon/arrowUp.png" type="Texture" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 30.3943, 35.9824 )
+
+[node name="Door" type="Area2D"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 1 )
+teleport_target = null
+
+[node name="UpperSprite" type="Sprite" parent="." index="0"]
+
+position = Vector2( 0, -69 )
+texture = ExtResource( 2 )
+
+[node name="LowerSprite" type="Sprite" parent="." index="1"]
+
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+
+shape = SubResource( 1 )
+
+[node name="PopupIndicator" type="Node2D" parent="." index="3"]
+
+[node name="PopupBubble" type="Sprite" parent="PopupIndicator" index="0"]
+
+modulate = Color( 0.292969, 0.292969, 0.292969, 1 )
+position = Vector2( -1.10519, -114.096 )
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Visibility" ]
+
+[node name="arrowUp" type="Sprite" parent="PopupIndicator" index="1"]
+
+position = Vector2( -1.2744, -121.821 )
+scale = Vector2( 0.727878, 0.727878 )
+texture = ExtResource( 5 )
+
+[connection signal="body_entered" from="." to="." method="_on_Door_body_entered"]
+
+[connection signal="body_exited" from="." to="." method="_on_Door_body_exited"]
+
+
