@@ -11,7 +11,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 30.3943, 35.9824 )
 
-[node name="Door" type="Area2D"]
+[node name="Door" type="Area2D" index="0"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )

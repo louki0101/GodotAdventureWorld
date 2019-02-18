@@ -268,7 +268,7 @@ tracks/2/keys = {
 "values": [ "hurt", "hurt", "idle" ]
 }
 
-[node name="Player" type="KinematicBody2D" index="0" groups=[
+[node name="Player" type="KinematicBody2D" groups=[
 "moves_bushes",
 "player",
 ]]
@@ -423,7 +423,6 @@ _sections_unfolded = [ "Anchor", "Margin", "Rect", "Visibility" ]
 
 [node name="FadeCanvasLayer" type="CanvasLayer" parent="." index="9"]
 
-editor/display_folded = true
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0

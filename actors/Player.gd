@@ -1,10 +1,16 @@
 extends "res://actors/Actor.gd"
 
 
+var inventory = []
+
+
+
+
 
 
 func _ready():
-	get_node("HUDCanvasLayer").update(health)	
+	get_node("HUDCanvasLayer").update(health)
+	get_node("HUDCanvasLayer").update_inventory(inventory)
 	
 	if SceneLoader.spawn_group_name:
 		var spawn_target = get_tree().get_nodes_in_group(SceneLoader.spawn_group_name).front()
@@ -20,9 +26,13 @@ func teleport_to(target_pos):
 	get_node("AnimationPlayer").play("FadeIn")
 
 
+func add_item(item_to_add):
+	inventory.append(item_to_add)
+	$HUDCanvasLayer.update_inventory(inventory)
 
-
-
+func remove_item(item_to_remove):
+	inventory.erase(item_to_remove)
+	$HUDCanvasLayer.update_inventory(inventory)
 
 
 

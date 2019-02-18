@@ -1,0 +1,86 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://objects/Merchant.gd" type="Script" id=1]
+[ext_resource path="res://art/items/item_torchOn.png" type="Texture" id=2]
+[ext_resource path="res://art/Merchant/soldier_idle.png" type="Texture" id=3]
+[ext_resource path="res://art/Merchant/soldier_hold1.png" type="Texture" id=4]
+[ext_resource path="res://art/other/PopupBubble.png" type="Texture" id=5]
+[ext_resource path="res://art/items/gold_1.png" type="Texture" id=6]
+[ext_resource path="res://art/other/not_circle.png" type="Texture" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 38.4758, 37.9185 )
+
+[sub_resource type="SpriteFrames" id=2]
+
+animations = [ {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "sell",
+"speed": 5.0
+} ]
+
+[node name="Merchant" type="Area2D"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 1 )
+player_path = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+
+shape = SubResource( 1 )
+
+[node name="Torch" type="Sprite" parent="." index="1"]
+
+position = Vector2( 90.3868, -66.1431 )
+texture = ExtResource( 2 )
+
+[node name="Merchant" type="AnimatedSprite" parent="." index="2"]
+
+position = Vector2( 184.808, -9.87202 )
+frames = SubResource( 2 )
+animation = "default"
+flip_h = true
+_sections_unfolded = [ "Offset" ]
+
+[node name="PopupIndicator" type="Node2D" parent="." index="3"]
+
+[node name="PopupBubble" type="Sprite" parent="PopupIndicator" index="0"]
+
+modulate = Color( 0.286275, 0.286275, 0.286275, 1 )
+position = Vector2( 94.2208, -148.132 )
+texture = ExtResource( 5 )
+_sections_unfolded = [ "Visibility" ]
+
+[node name="gold_1" type="Sprite" parent="PopupIndicator" index="1"]
+
+position = Vector2( 94.0883, -157.378 )
+scale = Vector2( 0.62803, 0.62803 )
+texture = ExtResource( 6 )
+
+[node name="NotSprite" type="Sprite" parent="PopupIndicator" index="2"]
+
+modulate = Color( 1, 0, 0, 1 )
+position = Vector2( 93.7335, -156.32 )
+scale = Vector2( 1.05662, 1.05662 )
+texture = ExtResource( 7 )
+_sections_unfolded = [ "Visibility" ]
+
+[connection signal="body_entered" from="." to="." method="_on_Merchant_body_entered"]
+
+[connection signal="body_exited" from="." to="." method="_on_Merchant_body_exited"]
+
+

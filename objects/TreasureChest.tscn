@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://objects/TreasureChest.gd" type="Script" id=1]
+[ext_resource path="res://art/other/nauticalTile_174.png" type="Texture" id=2]
+[ext_resource path="res://art/other/nauticalTile_174_empty.png" type="Texture" id=3]
+[ext_resource path="res://art/other/PopupBubble.png" type="Texture" id=4]
+[ext_resource path="res://art/items/gold_1.png" type="Texture" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 35.1054, 34.8742 )
+
+[node name="TreasureChest" type="Area2D" index="0"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 1 )
+
+[node name="FullSprite" type="Sprite" parent="." index="0"]
+
+texture = ExtResource( 2 )
+
+[node name="EmptySprite" type="Sprite" parent="." index="1"]
+
+visible = false
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+
+shape = SubResource( 1 )
+
+[node name="PopupIndicator" type="Node2D" parent="." index="3"]
+
+[node name="PopupBubble" type="Sprite" parent="PopupIndicator" index="0"]
+
+modulate = Color( 0.290196, 0.290196, 0.290196, 1 )
+position = Vector2( 0.619622, -85.4109 )
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Visibility" ]
+
+[node name="gold_1" type="Sprite" parent="PopupIndicator" index="1"]
+
+position = Vector2( 0.260473, -96.3825 )
+scale = Vector2( 0.639809, 0.639809 )
+texture = ExtResource( 5 )
+
+[connection signal="body_entered" from="." to="." method="_on_TreasureChest_body_entered"]
+
+[connection signal="body_exited" from="." to="." method="_on_TreasureChest_body_exited"]
+
+

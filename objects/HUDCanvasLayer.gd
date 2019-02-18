@@ -12,3 +12,15 @@ func update(hearts):
 		var heart = get_node("HBoxContainer/Heart_" + str(i))
 		if (i+1) > hearts: heart.texture = heart_empty_tex
 		else: heart.texture = heart_full_tex
+
+
+func update_inventory(inventory):
+	
+	$Inventory/Coin.hide()
+	$Inventory/Torch.hide()
+	
+	for item in inventory:
+		if item == 'coin': $Inventory/Coin.show()
+		if item == 'torch': $Inventory/Torch.show()
+		
+		
