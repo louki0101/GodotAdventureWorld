@@ -15,6 +15,8 @@ func _ready():
 	if SceneLoader.spawn_group_name:
 		var spawn_target = get_tree().get_nodes_in_group(SceneLoader.spawn_group_name).front()
 		position = spawn_target.position
+	
+	toggle_light(false)
 
 
 
@@ -52,6 +54,11 @@ func check_jump_attack():
 func player_jump():
 	vel.y = JUMP_HEIGHT
 	get_node("AnimatedSprite").play("jump")
+
+
+func toggle_light(turn_on):
+	if turn_on: $Torch.show()
+	else: $Torch.hide()
 
 
 

@@ -8,8 +8,8 @@ onready var ray_pivot = get_node("RayPivot")
 
 
 func _ready():
-	MAX_SPEED = 6000
-	ACCELERATION = 200
+	MAX_SPEED = 200
+	ACCELERATION = 20
 
 
 

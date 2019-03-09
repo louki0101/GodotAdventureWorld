@@ -1,0 +1,263 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://art/backgrounds/colored_talltrees.png" type="Texture" id=1]
+[ext_resource path="res://art/tiles/solid_color.png" type="Texture" id=2]
+[ext_resource path="res://art/tiles/castleCenter.png" type="Texture" id=3]
+[ext_resource path="res://art/fx/fire_01.png" type="Texture" id=4]
+[ext_resource path="res://art/fx/circle_05.png" type="Texture" id=5]
+[ext_resource path="res://art/fx/player_light_transparent_inverse.png" type="Texture" id=6]
+
+[sub_resource type="OccluderPolygon2D" id=1]
+
+closed = true
+cull_mode = 0
+polygon = PoolVector2Array( -35.0701, -34.951, 35.2095, -35.1259, 35.2095, 34.804, -35.0701, 34.6292 )
+
+[node name="LightingSpike" type="Node2D" index="0"]
+
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Objects" type="Node2D" parent="." index="0"]
+
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="background" type="Sprite" parent="Objects" index="0"]
+
+position = Vector2( 310.856, 314.953 )
+scale = Vector2( 0.60959, 0.60959 )
+texture = ExtResource( 1 )
+_sections_unfolded = [ "Visibility" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Polygon2D" type="Polygon2D" parent="Objects" index="1"]
+
+position = Vector2( -136.037, -116.992 )
+polygon = PoolVector2Array( 62, 79, 177, 30, 310, 108, 264, 246, 162, 204, 65, 330 )
+uv = PoolVector2Array(  )
+color = Color( 0.507813, 0, 0, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+
+[node name="Sprite" type="Sprite" parent="Objects" index="2"]
+
+position = Vector2( 121.66, 216.056 )
+texture = ExtResource( 2 )
+
+[node name="Sprite2" type="Sprite" parent="Objects" index="3"]
+
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -53.7993, 336.522 )
+scale = Vector2( 2.73333, 2.73714 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Visibility" ]
+
+[node name="ShadowCaster" type="Sprite" parent="Objects" index="4"]
+
+position = Vector2( 53.7613, 581.028 )
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Objects/ShadowCaster" index="0"]
+
+light_mask = 2
+occluder = SubResource( 1 )
+light_mask = 2
+
+[node name="Polygon2D2" type="Polygon2D" parent="." index="1"]
+
+light_mask = 2
+position = Vector2( -158.979, 396.313 )
+z_index = 999
+polygon = PoolVector2Array( 62, 79, 177, 30, 310, 108, 264, 246, 162, 204, 65, 330 )
+uv = PoolVector2Array(  )
+color = Color( 0, 0, 0, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+_sections_unfolded = [ "Visibility", "Z Index" ]
+
+[node name="Lights" type="Node2D" parent="." index="2"]
+
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Add_Light2D2" type="Light2D" parent="Lights" index="0"]
+
+position = Vector2( 1329.77, 566.665 )
+z_index = 1
+z_as_relative = false
+enabled = true
+editor_only = false
+texture = ExtResource( 4 )
+offset = Vector2( 0, 0 )
+texture_scale = 1.0
+color = Color( 1, 1, 1, 1 )
+energy = 1.0
+mode = 0
+range_height = 0.0
+range_z_min = -1024
+range_z_max = 1024
+range_layer_min = 0
+range_layer_max = 0
+range_item_cull_mask = 3
+shadow_enabled = true
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_buffer_size = 2048
+shadow_gradient_length = 0.0
+shadow_filter = 0
+shadow_filter_smooth = 0.0
+shadow_item_cull_mask = 1
+_sections_unfolded = [ "Range", "Shadow", "Visibility", "Z Index" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Label" type="Label" parent="Lights/Add_Light2D2" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -35.0
+margin_top = -33.0
+margin_right = 53.0
+margin_bottom = -19.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Additive Light"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Mix_Light2D2" type="Light2D" parent="Lights" index="1"]
+
+position = Vector2( 1304.42, 119.677 )
+scale = Vector2( 1.00112, 1.00112 )
+z_index = 1000
+enabled = true
+editor_only = false
+texture = ExtResource( 5 )
+offset = Vector2( 0, 0 )
+texture_scale = 1.0
+color = Color( 1, 1, 1, 1 )
+energy = 1.0
+mode = 2
+range_height = 0.0
+range_z_min = -1024
+range_z_max = 1024
+range_layer_min = 0
+range_layer_max = 0
+range_item_cull_mask = 1
+shadow_enabled = false
+shadow_color = Color( 0, 0, 0, 0 )
+shadow_buffer_size = 2048
+shadow_gradient_length = 0.0
+shadow_filter = 0
+shadow_filter_smooth = 0.0
+shadow_item_cull_mask = 1
+_sections_unfolded = [ "Range", "Visibility", "Z Index" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Label" type="Label" parent="Lights/Mix_Light2D2" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -35.0
+margin_top = -33.0
+margin_right = 53.0
+margin_bottom = -19.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Mix Light"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Mask_Light2D3" type="Light2D" parent="Lights" index="2"]
+
+light_mask = 2
+position = Vector2( 28.1886, 301.097 )
+z_index = 1000
+enabled = true
+editor_only = false
+texture = ExtResource( 6 )
+offset = Vector2( 0, 0 )
+texture_scale = 5.0
+color = Color( 1, 1, 1, 1 )
+energy = 1.0
+mode = 3
+range_height = 0.0
+range_z_min = -1024
+range_z_max = 1024
+range_layer_min = 0
+range_layer_max = 0
+range_item_cull_mask = 2
+shadow_enabled = false
+shadow_color = Color( 0, 0, 0, 0.685098 )
+shadow_buffer_size = 2048
+shadow_gradient_length = 0.0
+shadow_filter = 0
+shadow_filter_smooth = 0.0
+shadow_item_cull_mask = 3
+_sections_unfolded = [ "Range", "Shadow", "Visibility", "Z Index" ]
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Label" type="Label" parent="Lights/Mask_Light2D3" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -35.0
+margin_top = -33.0
+margin_right = 53.0
+margin_bottom = -19.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Mask Light"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+

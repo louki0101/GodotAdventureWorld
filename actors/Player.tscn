@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://actors/Player.gd" type="Script" id=1]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_idle.png" type="Texture" id=2]
@@ -6,13 +6,15 @@
 [ext_resource path="res://art/Adventurer/Poses/adventurer_duck.png" type="Texture" id=4]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_fall.png" type="Texture" id=5]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_jump.png" type="Texture" id=6]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_walk1.png" type="Texture" id=7]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_walk2.png" type="Texture" id=8]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_swim1.png" type="Texture" id=9]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_swim2.png" type="Texture" id=10]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_swim1.png" type="Texture" id=7]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_swim2.png" type="Texture" id=8]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_walk1.png" type="Texture" id=9]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_walk2.png" type="Texture" id=10]
 [ext_resource path="res://sound/splash.wav" type="AudioStream" id=11]
 [ext_resource path="res://objects/HUDCanvasLayer.tscn" type="PackedScene" id=12]
 [ext_resource path="res://art/hud/title_GameOver.png" type="Texture" id=13]
+[ext_resource path="res://art/fx/player_light_transparent_inverse.png" type="Texture" id=14]
+[ext_resource path="res://art/fx/fire_01.png" type="Texture" id=15]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -44,22 +46,21 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 7 ), ExtResource( 8 ) ],
 "loop": true,
-"name": "walk",
-"speed": 5.0
+"name": "swim",
+"speed": 3.0
 }, {
 "frames": [ ExtResource( 9 ), ExtResource( 10 ) ],
 "loop": true,
-"name": "swim",
-"speed": 3.0
+"name": "walk",
+"speed": 5.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=9]
 
 custom_solver_bias = 0.0
-radius = 22.65
-height = 45.1473
+extents = Vector2( 25.4142, 45.7339 )
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=3]
 
 resource_name = "FadeIn"
 length = 0.6
@@ -78,7 +79,7 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=4]
 
 resource_name = "FadeOut"
 length = 0.6
@@ -97,9 +98,8 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=5]
 
-resource_name = "_SETUP"
 length = 1.0
 loop = false
 step = 0.1
@@ -164,9 +164,8 @@ tracks/4/keys = {
 "values": [ Color( 0, 0, 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=6]
 
-resource_name = "flash"
 length = 1.2
 loop = false
 step = 0.1
@@ -183,9 +182,8 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.364627 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.364627 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.364627 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=7]
 
-resource_name = "game_over"
 length = 4.0
 loop = false
 step = 0.1
@@ -226,7 +224,7 @@ tracks/2/keys = {
 "values": [ Color( 0.863281, 0.118027, 0.118027, 0 ), Color( 0.863281, 0.118027, 0.118027, 0 ), Color( 0.863281, 0.118027, 0.118027, 1 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=8]
 
 length = 1.5
 loop = false
@@ -268,6 +266,44 @@ tracks/2/keys = {
 "values": [ "hurt", "hurt", "idle" ]
 }
 
+[sub_resource type="Animation" id=10]
+
+resource_name = "_SETUP"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("TorchLight2D:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 2.0 ]
+}
+
+[sub_resource type="Animation" id=11]
+
+resource_name = "flicker"
+length = 1.5
+loop = true
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("TorchLight2D:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.41, 0.44, 0.47, 0.82, 0.85, 0.87, 1.02, 1.03, 1.05, 1.3, 1.32, 1.34, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 2.0, 2.0, 2.1, 2.0, 2.0, 2.1, 2.0, 2.0, 1.9, 2.0, 2.0, 2.1, 2.0, 2.0 ]
+}
+
 [node name="Player" type="KinematicBody2D" groups=[
 "moves_bushes",
 "player",
@@ -289,7 +325,7 @@ _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
-shape = SubResource( 2 )
+shape = SubResource( 9 )
 
 [node name="SplashPosition2D" type="Position2D" parent="." index="2"]
 
@@ -315,12 +351,12 @@ autoplay = "_SETUP"
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/FadeIn = SubResource( 7 )
-anims/FadeOut = SubResource( 8 )
-anims/_SETUP = SubResource( 3 )
-anims/flash = SubResource( 4 )
-anims/game_over = SubResource( 5 )
-anims/pass_out = SubResource( 6 )
+anims/FadeIn = SubResource( 3 )
+anims/FadeOut = SubResource( 4 )
+anims/_SETUP = SubResource( 5 )
+anims/flash = SubResource( 6 )
+anims/game_over = SubResource( 7 )
+anims/pass_out = SubResource( 8 )
 blend_times = [  ]
 
 [node name="GameOverCanvasLayer" type="CanvasLayer" parent="." index="6"]
@@ -443,5 +479,67 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 color = Color( 0, 0, 0, 0 )
 _sections_unfolded = [ "Anchor", "Margin", "Rect", "Visibility" ]
+
+[node name="Torch" type="Node2D" parent="." index="10"]
+
+[node name="TorchLight2D" type="Light2D" parent="Torch" index="0"]
+
+enabled = true
+editor_only = false
+texture = ExtResource( 14 )
+offset = Vector2( 0, 0 )
+texture_scale = 2.0
+color = Color( 1, 1, 1, 1 )
+energy = 1.0
+mode = 3
+range_height = 0.0
+range_z_min = -1024
+range_z_max = 1024
+range_layer_min = 0
+range_layer_max = 0
+range_item_cull_mask = 2
+shadow_enabled = false
+shadow_color = Color( 0, 0, 0, 0 )
+shadow_buffer_size = 2048
+shadow_gradient_length = 0.0
+shadow_filter = 0
+shadow_filter_smooth = 0.0
+shadow_item_cull_mask = 1
+_sections_unfolded = [ "Range" ]
+
+[node name="TorchEffectLight2D" type="Light2D" parent="Torch" index="1"]
+
+enabled = true
+editor_only = false
+texture = ExtResource( 15 )
+offset = Vector2( 0, 0 )
+texture_scale = 2.0
+color = Color( 1, 0.726563, 0, 1 )
+energy = 0.5
+mode = 0
+range_height = 0.0
+range_z_min = -1024
+range_z_max = 1024
+range_layer_min = 0
+range_layer_max = 0
+range_item_cull_mask = 1
+shadow_enabled = false
+shadow_color = Color( 0, 0, 0, 0 )
+shadow_buffer_size = 2048
+shadow_gradient_length = 0.0
+shadow_filter = 0
+shadow_filter_smooth = 0.0
+shadow_item_cull_mask = 1
+
+[node name="TorchAnimationPlayer" type="AnimationPlayer" parent="Torch" index="2"]
+
+root_node = NodePath("..")
+autoplay = "flicker"
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/_SETUP = SubResource( 10 )
+anims/flicker = SubResource( 11 )
+blend_times = [  ]
 
 

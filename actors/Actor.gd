@@ -3,25 +3,25 @@ extends KinematicBody2D
 
 #movement
 var vel = Vector2()
-var GRAV = 1000
-var GRAV_MAX = 30000
-var MAX_SPEED = 20000
-var ACCELERATION = 500
+var GRAV = 30
+var GRAV_MAX = 1000
+var MAX_SPEED = 300
+var ACCELERATION = 25
 
 var UP_VECTOR = Vector2(0,-1)
-var JUMP_HEIGHT = -39000
+var JUMP_HEIGHT = -870
 
 
 
 #water
 var is_in_water = false
-var SWIM_HEIGHT = -8000
+var SWIM_HEIGHT = -200
 var splash_scn = preload("res://sfx/SplashParticles2D.tscn")
 
 
 #health
 var health = 2
-var KNOCKBACK = 8000
+var KNOCKBACK = 600
 var is_in_knockback = false
 var is_passed_out = false
 
@@ -96,5 +96,5 @@ func _physics_process(delta):
 	
 	actor_behavior(delta)
 	
-	move_and_slide(vel * delta, UP_VECTOR)
+	move_and_slide(vel, UP_VECTOR)
 	
