@@ -17,6 +17,11 @@ func _ready():
 		position = spawn_target.position
 	
 	toggle_light(false)
+	
+	#test inventory items
+	#add_item('coin')
+	#add_item('torch')
+	
 
 
 
@@ -56,8 +61,8 @@ func player_jump():
 	get_node("AnimatedSprite").play("jump")
 
 
-func toggle_light(turn_on):
-	if turn_on: $Torch.show()
+func toggle_light(turn_on):	
+	if turn_on and inventory.has('torch'): $Torch.show()
 	else: $Torch.hide()
 
 

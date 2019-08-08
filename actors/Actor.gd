@@ -30,11 +30,12 @@ var is_passed_out = false
 
 
 onready var sprite = get_node("AnimatedSprite")
+onready var splash_sound = get_node("SplashAudioStreamPlayer2D")
 
 
 func _ready():
-	print("I am an Actor! My name is: " + str(name) )
-	
+	#print("I am an Actor! My name is: " + str(name) )
+	pass
 
 
 
@@ -60,7 +61,12 @@ func pass_out():
 func knockback():
 	is_in_knockback = true
 	if get_node("AnimationPlayer"): get_node("AnimationPlayer").play("flash")
-	vel.y = -(KNOCKBACK*1)
+	
+	if is_in_water:
+		vel.y = -(KNOCKBACK * 0.3)
+	else:
+		vel.y = -(KNOCKBACK * 1)
+	
 	if get_node("AnimatedSprite").flip_h == true: vel.x = KNOCKBACK
 	else: vel.x = -KNOCKBACK
 	if get_node("AnimationPlayer"): yield(get_node("AnimationPlayer"), "animation_finished")
@@ -74,7 +80,7 @@ func entered_water():
 	splash.one_shot = true
 	splash.position = get_node("SplashPosition2D").position
 	add_child(splash)
-	get_node("SplashAudioStreamPlayer2D").play()
+	if splash_sound: splash_sound.play()
 
 
 func exited_water():

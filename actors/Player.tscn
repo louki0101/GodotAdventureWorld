@@ -5,11 +5,11 @@
 [ext_resource path="res://art/Adventurer/Poses/adventurer_hurt.png" type="Texture" id=3]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_duck.png" type="Texture" id=4]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_fall.png" type="Texture" id=5]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_jump.png" type="Texture" id=6]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_swim1.png" type="Texture" id=7]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_swim2.png" type="Texture" id=8]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_walk1.png" type="Texture" id=9]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_walk2.png" type="Texture" id=10]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_swim1.png" type="Texture" id=6]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_swim2.png" type="Texture" id=7]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_walk1.png" type="Texture" id=8]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_walk2.png" type="Texture" id=9]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_jump.png" type="Texture" id=10]
 [ext_resource path="res://sound/splash.wav" type="AudioStream" id=11]
 [ext_resource path="res://objects/HUDCanvasLayer.tscn" type="PackedScene" id=12]
 [ext_resource path="res://art/hud/title_GameOver.png" type="Texture" id=13]
@@ -39,23 +39,23 @@ animations = [ {
 "name": "fall",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ) ],
-"loop": true,
-"name": "jump",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 7 ), ExtResource( 8 ) ],
+"frames": [ ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": true,
 "name": "swim",
 "speed": 3.0
 }, {
-"frames": [ ExtResource( 9 ), ExtResource( 10 ) ],
+"frames": [ ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": true,
 "name": "walk",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "jump",
+"speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
 extents = Vector2( 25.4142, 45.7339 )
@@ -266,7 +266,7 @@ tracks/2/keys = {
 "values": [ "hurt", "hurt", "idle" ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=9]
 
 resource_name = "_SETUP"
 length = 1.0
@@ -285,7 +285,7 @@ tracks/0/keys = {
 "values": [ 2.0 ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=10]
 
 resource_name = "flicker"
 length = 1.5
@@ -304,9 +304,9 @@ tracks/0/keys = {
 "values": [ 2.0, 2.0, 2.1, 2.0, 2.0, 2.1, 2.0, 2.0, 1.9, 2.0, 2.0, 2.1, 2.0, 2.0 ]
 }
 
-[node name="Player" type="KinematicBody2D" groups=[
-"moves_bushes",
+[node name="Player" type="KinematicBody2D" index="0" groups=[
 "player",
+"moves_bushes",
 ]]
 
 input_pickable = false
@@ -325,7 +325,7 @@ _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
-shape = SubResource( 9 )
+shape = SubResource( 2 )
 
 [node name="SplashPosition2D" type="Position2D" parent="." index="2"]
 
@@ -538,8 +538,8 @@ autoplay = "flicker"
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/_SETUP = SubResource( 10 )
-anims/flicker = SubResource( 11 )
+anims/_SETUP = SubResource( 9 )
+anims/flicker = SubResource( 10 )
 blend_times = [  ]
 
 

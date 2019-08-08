@@ -24,7 +24,7 @@ extents = Vector2( 26.6738, 15.9287 )
 custom_solver_bias = 0.0
 extents = Vector2( 31.5153, 17.4654 )
 
-[node name="EnemySnail" type="KinematicBody2D" index="0"]
+[node name="EnemySnail" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 5
@@ -37,7 +37,6 @@ _sections_unfolded = [ "Collision", "collision" ]
 
 frames = SubResource( 1 )
 animation = "default"
-frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
@@ -90,7 +89,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="DownRayCast2D" type="RayCast2D" parent="RayPivot" index="1"]
 
-position = Vector2( -24.0511, 16.3878 )
+position = Vector2( -24.0511, 16.5038 )
 enabled = true
 exclude_parent = true
 cast_to = Vector2( 0, 10 )
