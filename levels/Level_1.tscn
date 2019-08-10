@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://utils/ExitGameKey.tscn" type="PackedScene" id=1]
 [ext_resource path="res://utils/FullscreenToggleKey.tscn" type="PackedScene" id=2]
@@ -6,9 +6,10 @@
 [ext_resource path="res://objects/Door.tscn" type="PackedScene" id=4]
 [ext_resource path="res://objects/Merchant.tscn" type="PackedScene" id=5]
 [ext_resource path="res://objects/TreasureChest.tscn" type="PackedScene" id=6]
-[ext_resource path="res://actors/Player.tscn" type="PackedScene" id=7]
-[ext_resource path="res://actors/EnemyFish.tscn" type="PackedScene" id=8]
-[ext_resource path="res://objects/WaterArea2D.tscn" type="PackedScene" id=9]
+[ext_resource path="res://objects/PickaxePickup.tscn" type="PackedScene" id=7]
+[ext_resource path="res://actors/Player.tscn" type="PackedScene" id=8]
+[ext_resource path="res://actors/EnemyFish.tscn" type="PackedScene" id=9]
+[ext_resource path="res://objects/WaterArea2D.tscn" type="PackedScene" id=10]
 
 [sub_resource type="GDScript" id=1]
 
@@ -28,7 +29,7 @@ func _on_DarknessArea2D_body_exited(body):
 		body.toggle_light(false)
 "
 
-[node name="Level_1" type="Node2D"]
+[node name="Level_1" type="Node2D" index="0"]
 
 __meta__ = {
 "_edit_lock_": true
@@ -77,12 +78,16 @@ __meta__ = {
 
 [node name="MerchantOutdoor" type="Node2D" parent="BackgroundStaticObjects" index="0"]
 
+editor/display_folded = true
+
 [node name="Door" parent="BackgroundStaticObjects/MerchantOutdoor" index="0" instance=ExtResource( 4 )]
 
 position = Vector2( -1267.4, -32.4566 )
 teleport_target = NodePath("../../MerchantIndoor/Door2")
 
 [node name="MerchantIndoor" type="Node2D" parent="BackgroundStaticObjects" index="1"]
+
+editor/display_folded = true
 
 [node name="Door2" parent="BackgroundStaticObjects/MerchantIndoor" index="0" instance=ExtResource( 4 )]
 
@@ -110,9 +115,14 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Player" parent="." index="3" instance=ExtResource( 7 )]
+[node name="PickaxePickup" parent="BackgroundStaticObjects/Cave" index="0" instance=ExtResource( 7 )]
 
-position = Vector2( -5086.09, -1270.01 )
+position = Vector2( -5799.8, 9555.17 )
+
+[node name="Player" parent="." index="3" instance=ExtResource( 8 )]
+
+editor/display_folded = true
+position = Vector2( -5365.16, 9656.55 )
 
 [node name="Camera2D" type="Camera2D" parent="Player" index="2"]
 
@@ -142,33 +152,35 @@ _sections_unfolded = [ "Limit" ]
 
 [node name="Enemies" type="Node2D" parent="." index="4"]
 
+editor/display_folded = true
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="EnemyFish" parent="Enemies" index="0" instance=ExtResource( 8 )]
+[node name="EnemyFish" parent="Enemies" index="0" instance=ExtResource( 9 )]
 
 position = Vector2( -5398.97, -1030.63 )
 
-[node name="EnemyFish2" parent="Enemies" index="1" instance=ExtResource( 8 )]
+[node name="EnemyFish2" parent="Enemies" index="1" instance=ExtResource( 9 )]
 
 position = Vector2( -6430.57, -809.951 )
 
-[node name="EnemyFish3" parent="Enemies" index="2" instance=ExtResource( 8 )]
+[node name="EnemyFish3" parent="Enemies" index="2" instance=ExtResource( 9 )]
 
 position = Vector2( -7079.88, -261.479 )
 
-[node name="EnemyFish4" parent="Enemies" index="3" instance=ExtResource( 8 )]
+[node name="EnemyFish4" parent="Enemies" index="3" instance=ExtResource( 9 )]
 
 position = Vector2( -7371.29, -620.479 )
 
 [node name="ForegroundStaticObjects" type="Node2D" parent="." index="5"]
 
+editor/display_folded = true
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="WaterArea2D" parent="ForegroundStaticObjects" index="0" instance=ExtResource( 9 )]
+[node name="WaterArea2D" parent="ForegroundStaticObjects" index="0" instance=ExtResource( 10 )]
 
 position = Vector2( -6248.67, -1026.08 )
 
@@ -206,6 +218,9 @@ __meta__ = {
 }
 
 [node name="CaveDarkness" type="Node2D" parent="." index="7"]
+
+editor/display_folded = true
+visible = false
 
 [node name="DarknessArea2D" type="Area2D" parent="CaveDarkness" index="0"]
 

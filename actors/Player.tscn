@@ -3,13 +3,13 @@
 [ext_resource path="res://actors/Player.gd" type="Script" id=1]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_idle.png" type="Texture" id=2]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_hurt.png" type="Texture" id=3]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_duck.png" type="Texture" id=4]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_fall.png" type="Texture" id=5]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_swim1.png" type="Texture" id=6]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_swim2.png" type="Texture" id=7]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_fall.png" type="Texture" id=4]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_swim1.png" type="Texture" id=5]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_swim2.png" type="Texture" id=6]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_jump.png" type="Texture" id=7]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_walk1.png" type="Texture" id=8]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_walk2.png" type="Texture" id=9]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_jump.png" type="Texture" id=10]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_duck.png" type="Texture" id=10]
 [ext_resource path="res://sound/splash.wav" type="AudioStream" id=11]
 [ext_resource path="res://objects/HUDCanvasLayer.tscn" type="PackedScene" id=12]
 [ext_resource path="res://art/hud/title_GameOver.png" type="Texture" id=13]
@@ -31,18 +31,18 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 4 ) ],
 "loop": true,
-"name": "duck",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 5 ) ],
-"loop": true,
 "name": "fall",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 7 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "swim",
 "speed": 3.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "jump",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": true,
@@ -51,7 +51,7 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 10 ) ],
 "loop": true,
-"name": "jump",
+"name": "duck",
 "speed": 5.0
 } ]
 
@@ -304,7 +304,7 @@ tracks/0/keys = {
 "values": [ 2.0, 2.0, 2.1, 2.0, 2.0, 2.1, 2.0, 2.0, 1.9, 2.0, 2.0, 2.1, 2.0, 2.0 ]
 }
 
-[node name="Player" type="KinematicBody2D" index="0" groups=[
+[node name="Player" type="KinematicBody2D" groups=[
 "player",
 "moves_bushes",
 ]]
