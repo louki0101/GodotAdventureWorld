@@ -89,7 +89,8 @@ func exited_water():
 	splash.one_shot = true
 	splash.position = get_node("SplashPosition2D").position
 	add_child(splash)
-	get_node("SplashAudioStreamPlayer2D").play()
+	if has_node("SplashAudioStreamPlayer2D"):
+		get_node("SplashAudioStreamPlayer2D").play()
 
 
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://actors/EnemyFish.gd" type="Script" id=1]
 [ext_resource path="res://art/enemies/fishPink.png" type="Texture" id=2]
 [ext_resource path="res://art/enemies/fishPink_swim.png" type="Texture" id=3]
+[ext_resource path="res://sound/splash.wav" type="AudioStream" id=4]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -35,7 +36,6 @@ script = ExtResource( 1 )
 
 frames = SubResource( 1 )
 animation = "default"
-frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
@@ -69,6 +69,17 @@ audio_bus_name = "Master"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea2D" index="0"]
 
 shape = SubResource( 3 )
+
+[node name="SplashAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="5"]
+
+stream = ExtResource( 4 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
 
 [connection signal="body_entered" from="DamageArea2D" to="." method="_on_DamageArea2D_body_entered"]
 

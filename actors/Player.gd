@@ -17,6 +17,7 @@ func _ready():
 		position = spawn_target.position
 	
 	toggle_light(false)
+	$Pickaxe.hide()
 	
 	#test inventory items
 	#add_item('coin')
@@ -66,6 +67,25 @@ func toggle_light(turn_on):
 	else: $Torch.hide()
 
 
+func swing_pickaxe():
+	if inventory.has('pickaxe'):
+		$Pickaxe.show()
+		
+		#figure out if we hit a block, and break it
+		var world_pos = $Pickaxe/Position2D.global_position
+		var map = get_node("/root/Level_1/ForegroundTileMap")
+		var map_pos = map.world_to_map(world_pos)
+		#print(map_pos)
+		var tile_index = map.get_cellv(map_pos)
+		if tile_index == 7:
+			#print(tile_index)
+			map.set_cellv(map_pos, -1)#clear tile
+		
+		yield(get_tree().create_timer(.5), "timeout")
+		$Pickaxe.hide()
+
+
+
 
 
 func actor_behavior(delta):
@@ -79,7 +99,16 @@ func actor_behavior(delta):
 	if is_passed_out: 
 		vel.x = 0
 		return
-		
+	
+	
+	if Input.is_action_just_pressed('use_pickaxe'):
+		swing_pickaxe()
+	if get_node("AnimatedSprite").flip_h == true:
+		$Pickaxe.scale.x = -1
+	else:
+		$Pickaxe.scale.x = 1
+	
+
 	
 	
 	if is_on_wall():

@@ -1,20 +1,21 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://actors/Player.gd" type="Script" id=1]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_idle.png" type="Texture" id=2]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_hurt.png" type="Texture" id=3]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_fall.png" type="Texture" id=4]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_swim1.png" type="Texture" id=5]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_swim2.png" type="Texture" id=6]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_jump.png" type="Texture" id=7]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_walk1.png" type="Texture" id=8]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_walk2.png" type="Texture" id=9]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_duck.png" type="Texture" id=10]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_walk1.png" type="Texture" id=4]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_walk2.png" type="Texture" id=5]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_jump.png" type="Texture" id=6]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_duck.png" type="Texture" id=7]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_swim1.png" type="Texture" id=8]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_swim2.png" type="Texture" id=9]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_fall.png" type="Texture" id=10]
 [ext_resource path="res://sound/splash.wav" type="AudioStream" id=11]
 [ext_resource path="res://objects/HUDCanvasLayer.tscn" type="PackedScene" id=12]
 [ext_resource path="res://art/hud/title_GameOver.png" type="Texture" id=13]
 [ext_resource path="res://art/fx/player_light_transparent_inverse.png" type="Texture" id=14]
 [ext_resource path="res://art/fx/fire_01.png" type="Texture" id=15]
+[ext_resource path="res://art/items/item_toolPickaxe.png" type="Texture" id=16]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -29,29 +30,29 @@ animations = [ {
 "name": "hurt",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "fall",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ) ],
-"loop": true,
-"name": "swim",
-"speed": 3.0
-}, {
-"frames": [ ExtResource( 7 ) ],
-"loop": true,
-"name": "jump",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 8 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
 "loop": true,
 "name": "walk",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 10 ) ],
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "jump",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
 "loop": true,
 "name": "duck",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "swim",
+"speed": 3.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "fall",
 "speed": 5.0
 } ]
 
@@ -305,8 +306,8 @@ tracks/0/keys = {
 }
 
 [node name="Player" type="KinematicBody2D" groups=[
-"player",
 "moves_bushes",
+"player",
 ]]
 
 input_pickable = false
@@ -482,6 +483,8 @@ _sections_unfolded = [ "Anchor", "Margin", "Rect", "Visibility" ]
 
 [node name="Torch" type="Node2D" parent="." index="10"]
 
+editor/display_folded = true
+
 [node name="TorchLight2D" type="Light2D" parent="Torch" index="0"]
 
 enabled = true
@@ -541,5 +544,18 @@ playback_speed = 1.0
 anims/_SETUP = SubResource( 9 )
 anims/flicker = SubResource( 10 )
 blend_times = [  ]
+
+[node name="Pickaxe" type="Node2D" parent="." index="11"]
+
+_sections_unfolded = [ "Transform" ]
+
+[node name="Sprite" type="Sprite" parent="Pickaxe" index="0"]
+
+position = Vector2( 45, 0 )
+texture = ExtResource( 16 )
+
+[node name="Position2D" type="Position2D" parent="Pickaxe" index="1"]
+
+position = Vector2( 69, -1 )
 
 

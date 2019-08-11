@@ -2,7 +2,7 @@
 
 [ext_resource path="res://art/items/item_toolPickaxe.png" type="Texture" id=1]
 
-[sub_resource type="GDScript" id=3]
+[sub_resource type="GDScript" id=1]
 
 script/source = "extends Area2D
 
@@ -19,7 +19,7 @@ func _on_PickaxePickup_body_entered(body):
 custom_solver_bias = 0.0
 extents = Vector2( 26.1476, 24.7644 )
 
-[node name="PickaxePickup" type="Area2D" index="0"]
+[node name="PickaxePickup" type="Area2D"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -28,7 +28,7 @@ linear_damp = 0.1
 angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
-script = SubResource( 3 )
+script = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
