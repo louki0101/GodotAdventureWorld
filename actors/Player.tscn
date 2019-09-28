@@ -6,9 +6,9 @@
 [ext_resource path="res://art/Adventurer/Poses/adventurer_walk1.png" type="Texture" id=4]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_walk2.png" type="Texture" id=5]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_fall.png" type="Texture" id=6]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_duck.png" type="Texture" id=7]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_swim1.png" type="Texture" id=8]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_swim2.png" type="Texture" id=9]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_swim1.png" type="Texture" id=7]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_swim2.png" type="Texture" id=8]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_duck.png" type="Texture" id=9]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_jump.png" type="Texture" id=10]
 [ext_resource path="res://sound/splash.wav" type="AudioStream" id=11]
 [ext_resource path="res://objects/HUDCanvasLayer.tscn" type="PackedScene" id=12]
@@ -40,15 +40,15 @@ animations = [ {
 "name": "fall",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ) ],
-"loop": true,
-"name": "duck",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 8 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 7 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "swim",
 "speed": 3.0
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "duck",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 10 ) ],
 "loop": true,
@@ -413,23 +413,39 @@ _sections_unfolded = [ "Visibility" ]
 position = Vector2( 0, 41 )
 enabled = true
 exclude_parent = true
-cast_to = Vector2( 0, 10 )
+cast_to = Vector2( 0, 18 )
 collision_mask = 4
 
 [node name="RayCast2D2" type="RayCast2D" parent="FeetRays" index="1"]
 
-position = Vector2( 21, 41 )
+position = Vector2( 24, 41 )
 enabled = true
 exclude_parent = true
-cast_to = Vector2( 0, 10 )
+cast_to = Vector2( 0, 18 )
 collision_mask = 4
 
-[node name="RayCast2D3" type="RayCast2D" parent="FeetRays" index="2"]
+[node name="RayCast2D4" type="RayCast2D" parent="FeetRays" index="2"]
 
-position = Vector2( -20, 41 )
+position = Vector2( 12, 41 )
 enabled = true
 exclude_parent = true
-cast_to = Vector2( 0, 10 )
+cast_to = Vector2( 0, 18 )
+collision_mask = 4
+
+[node name="RayCast2D3" type="RayCast2D" parent="FeetRays" index="3"]
+
+position = Vector2( -24, 41 )
+enabled = true
+exclude_parent = true
+cast_to = Vector2( 0, 18 )
+collision_mask = 4
+
+[node name="RayCast2D5" type="RayCast2D" parent="FeetRays" index="4"]
+
+position = Vector2( -13, 41 )
+enabled = true
+exclude_parent = true
+cast_to = Vector2( 0, 18 )
 collision_mask = 4
 
 [node name="ScreenFadeCanvasLayer" type="CanvasLayer" parent="." index="8"]
@@ -508,6 +524,7 @@ _sections_unfolded = [ "Range" ]
 
 [node name="TorchEffectLight2D" type="Light2D" parent="Torch" index="1"]
 
+position = Vector2( -0.615559, 4.69363 )
 enabled = true
 editor_only = false
 texture = ExtResource( 15 )

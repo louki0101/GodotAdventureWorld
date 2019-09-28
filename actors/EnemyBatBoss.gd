@@ -1,12 +1,14 @@
 extends KinematicBody2D
 
-var MOVE_SPEED = 3
+var MOVE_SPEED = 4
 var path_dir_forward = true
 var is_hanging = true
 var is_passed_out = false
 var is_in_knockback = false
 
-var health = 3
+var health = 5
+
+var last_pos = Vector2(0,0)
 
 
 func _ready():
@@ -41,12 +43,20 @@ func pass_out():
 
 func _on_DamageArea2D_body_entered(body):
 	if body.has_method("hurt") and body.is_in_group("player"):
+		body.position.y -= 40
 		body.hurt()
 
 
 
 
 func _physics_process(delta):
+	
+	if last_pos.x > global_position.x:
+		$AnimatedSprite.flip_h = false
+	else:
+		$AnimatedSprite.flip_h = true
+	last_pos = global_position
+
 
 	
 	if is_hanging == false:

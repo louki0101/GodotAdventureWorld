@@ -12,14 +12,14 @@
 [ext_resource path="res://actors/EnemyBatBoss.tscn" type="PackedScene" id=10]
 [ext_resource path="res://objects/WaterArea2D.tscn" type="PackedScene" id=11]
 
-[sub_resource type="Curve2D" id=2]
+[sub_resource type="Curve2D" id=1]
 
 bake_interval = 5.0
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -7161.76, 2891.2, 0, 0, 0, 0, -7168.12, 3304.12, 7.36636, 7.36636, 0, 0, -6475.86, 3298.68, 0, 0, 0, 0, -6479.83, 2822.81 )
+"points": PoolVector2Array( 0, 0, 0, 0, -7161.76, 2891.2, 0, 0, 0, 0, -7133.41, 3080.85, 0, 0, 0, 0, -7196.57, 3269.21, 0, 0, 0, 0, -7024.83, 3194.97, 0, 0, 0, 0, -6840.89, 3262.56, 0, 0, 0, 0, -6681.34, 3176.14, 0, 0, 0, 0, -6488.54, 3262.56, 0, 0, 0, 0, -6456.41, 3077.52, 0, 0, 0, 0, -6702.39, 2976.69 )
 }
 
-[sub_resource type="GDScript" id=1]
+[sub_resource type="GDScript" id=2]
 
 script/source = "extends Area2D
 
@@ -37,7 +37,7 @@ func _on_DarknessArea2D_body_exited(body):
 		body.toggle_light(false)
 "
 
-[node name="Level_1" type="Node2D"]
+[node name="Level_1" type="Node2D" index="0"]
 
 __meta__ = {
 "_edit_lock_": true
@@ -137,7 +137,7 @@ teleport_target = NodePath("../BottomDoor")
 
 [node name="Player" parent="." index="3" instance=ExtResource( 8 )]
 
-position = Vector2( -6082.43, 3019.7 )
+position = Vector2( -6299.49, 3027.24 )
 
 [node name="Camera2D" type="Camera2D" parent="Player" index="2"]
 
@@ -191,7 +191,7 @@ position = Vector2( -7371.29, -620.479 )
 
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )
 position = Vector2( -1.22803, 7.12866 )
-curve = SubResource( 2 )
+curve = SubResource( 1 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Enemies/Path2D" index="0"]
 
@@ -268,7 +268,7 @@ linear_damp = 0.1
 angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
-script = SubResource( 1 )
+script = SubResource( 2 )
 __meta__ = {
 "_edit_lock_": true
 }
