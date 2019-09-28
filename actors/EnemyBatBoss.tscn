@@ -1,0 +1,114 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://actors/EnemyBatBoss.gd" type="Script" id=1]
+[ext_resource path="res://art/enemies/bat_dead.png" type="Texture" id=2]
+[ext_resource path="res://art/enemies/bat_hang.png" type="Texture" id=3]
+[ext_resource path="res://art/enemies/bat_fly.png" type="Texture" id=4]
+[ext_resource path="res://art/enemies/bat.png" type="Texture" id=5]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "dead",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "hang",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "fly",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 36.9478, 43.2681 )
+
+[sub_resource type="RectangleShape2D" id=3]
+
+custom_solver_bias = 0.0
+extents = Vector2( 43.9213, 41.3985 )
+
+[sub_resource type="Animation" id=4]
+
+resource_name = "flash"
+length = 0.6
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="EnemyBatBoss" type="KinematicBody2D" index="0"]
+
+input_pickable = false
+collision_layer = 5
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "collision" ]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
+
+scale = Vector2( 2, 2 )
+frames = SubResource( 1 )
+animation = "hang"
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+
+shape = SubResource( 2 )
+
+[node name="DamageArea2D" type="Area2D" parent="." index="2"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea2D" index="0"]
+
+position = Vector2( 0, 8 )
+shape = SubResource( 3 )
+
+[node name="HangTimer" type="Timer" parent="." index="3"]
+
+process_mode = 1
+wait_time = 1.5
+one_shot = true
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/flash = SubResource( 4 )
+blend_times = [  ]
+
+[connection signal="body_entered" from="DamageArea2D" to="." method="_on_DamageArea2D_body_entered"]
+
+[connection signal="timeout" from="HangTimer" to="." method="_on_HangTimer_timeout"]
+
+

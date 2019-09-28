@@ -37,6 +37,7 @@ _sections_unfolded = [ "Collision", "collision" ]
 
 frames = SubResource( 1 )
 animation = "default"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]

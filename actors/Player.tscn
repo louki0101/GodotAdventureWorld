@@ -5,11 +5,11 @@
 [ext_resource path="res://art/Adventurer/Poses/adventurer_hurt.png" type="Texture" id=3]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_walk1.png" type="Texture" id=4]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_walk2.png" type="Texture" id=5]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_jump.png" type="Texture" id=6]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_fall.png" type="Texture" id=6]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_duck.png" type="Texture" id=7]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_swim1.png" type="Texture" id=8]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_swim2.png" type="Texture" id=9]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_fall.png" type="Texture" id=10]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_jump.png" type="Texture" id=10]
 [ext_resource path="res://sound/splash.wav" type="AudioStream" id=11]
 [ext_resource path="res://objects/HUDCanvasLayer.tscn" type="PackedScene" id=12]
 [ext_resource path="res://art/hud/title_GameOver.png" type="Texture" id=13]
@@ -37,7 +37,7 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 6 ) ],
 "loop": true,
-"name": "jump",
+"name": "fall",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 7 ) ],
@@ -52,7 +52,7 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 10 ) ],
 "loop": true,
-"name": "fall",
+"name": "jump",
 "speed": 5.0
 } ]
 
@@ -408,8 +408,6 @@ _sections_unfolded = [ "Visibility" ]
 
 [node name="FeetRays" type="Node2D" parent="." index="7"]
 
-editor/display_folded = true
-
 [node name="RayCast2D" type="RayCast2D" parent="FeetRays" index="0"]
 
 position = Vector2( 0, 41 )
@@ -420,7 +418,7 @@ collision_mask = 4
 
 [node name="RayCast2D2" type="RayCast2D" parent="FeetRays" index="1"]
 
-position = Vector2( 16, 41 )
+position = Vector2( 21, 41 )
 enabled = true
 exclude_parent = true
 cast_to = Vector2( 0, 10 )
@@ -428,7 +426,7 @@ collision_mask = 4
 
 [node name="RayCast2D3" type="RayCast2D" parent="FeetRays" index="2"]
 
-position = Vector2( -14, 41 )
+position = Vector2( -20, 41 )
 enabled = true
 exclude_parent = true
 cast_to = Vector2( 0, 10 )
@@ -482,8 +480,6 @@ color = Color( 0, 0, 0, 0 )
 _sections_unfolded = [ "Anchor", "Margin", "Rect", "Visibility" ]
 
 [node name="Torch" type="Node2D" parent="." index="10"]
-
-editor/display_folded = true
 
 [node name="TorchLight2D" type="Light2D" parent="Torch" index="0"]
 
