@@ -19,10 +19,12 @@ func update_inventory(inventory):
 	$Inventory/Coin.hide()
 	$Inventory/Torch.hide()
 	$Inventory/Pickaxe.hide()
+	$Inventory/KeyBlue.hide()
 	
 	for item in inventory:
 		if item == 'coin': $Inventory/Coin.show()
 		if item == 'torch': $Inventory/Torch.show()
 		if item == 'pickaxe': $Inventory/Pickaxe.show()
+		if item == 'key_blue': $Inventory/KeyBlue.show()
 		
 		

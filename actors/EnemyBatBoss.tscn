@@ -1,27 +1,27 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://actors/EnemyBatBoss.gd" type="Script" id=1]
-[ext_resource path="res://art/enemies/bat_dead.png" type="Texture" id=2]
-[ext_resource path="res://art/enemies/bat_hang.png" type="Texture" id=3]
-[ext_resource path="res://art/enemies/bat_fly.png" type="Texture" id=4]
-[ext_resource path="res://art/enemies/bat.png" type="Texture" id=5]
+[ext_resource path="res://art/enemies/bat_hang.png" type="Texture" id=2]
+[ext_resource path="res://art/enemies/bat_fly.png" type="Texture" id=3]
+[ext_resource path="res://art/enemies/bat.png" type="Texture" id=4]
+[ext_resource path="res://art/enemies/bat_dead.png" type="Texture" id=5]
 
 [sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
-"name": "dead",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 3 ) ],
-"loop": true,
 "name": "hang",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
+"frames": [ ExtResource( 3 ), ExtResource( 4 ) ],
 "loop": true,
 "name": "fly",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "dead",
 "speed": 5.0
 } ]
 
@@ -62,6 +62,7 @@ collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "collision" ]
+item_drop_scene = null
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
 

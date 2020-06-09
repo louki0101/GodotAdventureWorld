@@ -6,9 +6,11 @@ var is_hanging = true
 var is_passed_out = false
 var is_in_knockback = false
 
-var health = 5
+var health = 2
 
 var last_pos = Vector2(0,0)
+
+export(PackedScene) var item_drop_scene
 
 
 func _ready():
@@ -32,8 +34,12 @@ func knockback():
 
 
 func pass_out():
-	print('general passed out.')
+	print('bat passed out.')
 	is_passed_out = true
+	
+	var new_node = item_drop_scene.instance()
+	new_node.set_position(get_position())
+	get_parent().add_child(new_node)
 	
 	queue_free()
 

@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://art/tiles/lock_blue.png" type="Texture" id=1]
+
+[sub_resource type="GDScript" id=3]
+
+script/source = "extends StaticBody2D
+
+
+
+func _on_UnlockArea2D_body_entered(body):
+	if body.is_in_group(\"player\") and body.inventory.find('key_blue') >= 0:
+		queue_free()
+"
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 70.2976, 70.6048 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 79.6412, 78.4885 )
+
+[node name="Gate_Blue" type="StaticBody2D" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+script = SubResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="." index="0"]
+
+scale = Vector2( 2, 2 )
+texture = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+
+shape = SubResource( 1 )
+
+[node name="UnlockArea2D" type="Area2D" parent="." index="2"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UnlockArea2D" index="0"]
+
+shape = SubResource( 2 )
+
+[connection signal="body_entered" from="UnlockArea2D" to="." method="_on_UnlockArea2D_body_entered"]
+
+
