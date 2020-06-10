@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://utils/ExitGameKey.tscn" type="PackedScene" id=1]
 [ext_resource path="res://utils/FullscreenToggleKey.tscn" type="PackedScene" id=2]
@@ -8,11 +8,12 @@
 [ext_resource path="res://objects/TreasureChest.tscn" type="PackedScene" id=6]
 [ext_resource path="res://objects/PickaxePickup.tscn" type="PackedScene" id=7]
 [ext_resource path="res://objects/Gate_Blue.tscn" type="PackedScene" id=8]
-[ext_resource path="res://actors/Player.tscn" type="PackedScene" id=9]
-[ext_resource path="res://actors/EnemyFish.tscn" type="PackedScene" id=10]
-[ext_resource path="res://actors/EnemyBatBoss.tscn" type="PackedScene" id=11]
-[ext_resource path="res://objects/Key_Blue.tscn" type="PackedScene" id=12]
-[ext_resource path="res://objects/WaterArea2D.tscn" type="PackedScene" id=13]
+[ext_resource path="res://objects/JetpackPickup.tscn" type="PackedScene" id=9]
+[ext_resource path="res://actors/Player.tscn" type="PackedScene" id=10]
+[ext_resource path="res://actors/EnemyFish.tscn" type="PackedScene" id=11]
+[ext_resource path="res://actors/EnemyBatBoss.tscn" type="PackedScene" id=12]
+[ext_resource path="res://objects/Key_Blue.tscn" type="PackedScene" id=13]
+[ext_resource path="res://objects/WaterArea2D.tscn" type="PackedScene" id=14]
 
 [sub_resource type="Curve2D" id=1]
 
@@ -39,7 +40,7 @@ func _on_DarknessArea2D_body_exited(body):
 		body.toggle_light(false)
 "
 
-[node name="Level_1" type="Node2D"]
+[node name="Level_1" type="Node2D" index="0"]
 
 __meta__ = {
 "_edit_lock_": true
@@ -145,15 +146,19 @@ teleport_target = NodePath("../BottomDoor")
 
 position = Vector2( -7662.37, 3080.29 )
 
-[node name="Pickups" type="Node2D" parent="BackgroundStaticObjects" index="4" groups=[
-"pickup_target",
+[node name="JetpackPickup" parent="BackgroundStaticObjects/Cave" index="4" instance=ExtResource( 9 )]
+
+position = Vector2( -8258.09, 3104.27 )
+
+[node name="ItemDropsTarget" type="Node2D" parent="BackgroundStaticObjects" index="4" groups=[
+"item_drop_target",
 ]]
 
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Player" parent="." index="3" instance=ExtResource( 9 )]
+[node name="Player" parent="." index="3" instance=ExtResource( 10 )]
 
 position = Vector2( -6299.49, 3027.24 )
 
@@ -189,19 +194,19 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="EnemyFish" parent="Enemies" index="0" instance=ExtResource( 10 )]
+[node name="EnemyFish" parent="Enemies" index="0" instance=ExtResource( 11 )]
 
 position = Vector2( -5398.97, -1030.63 )
 
-[node name="EnemyFish2" parent="Enemies" index="1" instance=ExtResource( 10 )]
+[node name="EnemyFish2" parent="Enemies" index="1" instance=ExtResource( 11 )]
 
 position = Vector2( -6430.57, -809.951 )
 
-[node name="EnemyFish3" parent="Enemies" index="2" instance=ExtResource( 10 )]
+[node name="EnemyFish3" parent="Enemies" index="2" instance=ExtResource( 11 )]
 
 position = Vector2( -7079.88, -261.479 )
 
-[node name="EnemyFish4" parent="Enemies" index="3" instance=ExtResource( 10 )]
+[node name="EnemyFish4" parent="Enemies" index="3" instance=ExtResource( 11 )]
 
 position = Vector2( -7371.29, -620.479 )
 
@@ -223,11 +228,11 @@ cubic_interp = true
 loop = false
 lookahead = 4.0
 
-[node name="EnemyBatBoss" parent="Enemies/Path2D/PathFollow2D" index="0" instance=ExtResource( 11 )]
+[node name="EnemyBatBoss" parent="Enemies/Path2D/PathFollow2D" index="0" instance=ExtResource( 12 )]
 
 position = Vector2( 12.5386, 5.02588 )
 rotation = -1.59702
-item_drop_scene = ExtResource( 12 )
+item_drop_scene = ExtResource( 13 )
 
 [node name="ForegroundStaticObjects" type="Node2D" parent="." index="5"]
 
@@ -236,7 +241,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="WaterArea2D" parent="ForegroundStaticObjects" index="0" instance=ExtResource( 13 )]
+[node name="WaterArea2D" parent="ForegroundStaticObjects" index="0" instance=ExtResource( 14 )]
 
 position = Vector2( -6248.67, -1026.08 )
 

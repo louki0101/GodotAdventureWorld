@@ -38,8 +38,8 @@ func pass_out():
 	is_passed_out = true
 	
 	var new_node = item_drop_scene.instance()
-	new_node.set_position(get_position())
-	get_parent().add_child(new_node)
+	get_tree().get_nodes_in_group("item_drop_target")[0].add_child(new_node)
+	new_node.set_global_position(get_global_position())
 	
 	queue_free()
 
