@@ -2,6 +2,14 @@ extends "res://actors/Actor.gd"
 
 
 var inventory = []
+var has_jetpack = false
+
+const JETPACK_MAX_FUEL = 10
+const JETPACK_BURN_RATE = 5
+const JETPACK_THRUST = 50
+const JETPACK_REFILL_RATE = 1
+
+var jetpack_fuel = JETPACK_MAX_FUEL
 
 
 
@@ -37,6 +45,8 @@ func teleport_to(target_pos):
 func add_item(item_to_add):
 	inventory.append(item_to_add)
 	$HUDCanvasLayer.update_inventory(inventory)
+	if item_to_add == 'jetpack':
+		has_jetpack = true
 
 func remove_item(item_to_remove):
 	inventory.erase(item_to_remove)
@@ -148,12 +158,20 @@ func actor_behavior(delta):
 		if is_on_floor():
 			vel.y = 10
 			
+			if has_jetpack and jetpack_fuel < JETPACK_MAX_FUEL:
+				jetpack_fuel = jetpack_fuel + (delta*JETPACK_REFILL_RATE)
+			
 			if Input.is_action_just_pressed("ui_accept"):
 				player_jump()
 		else: #in the air...
 			check_jump_attack()
 	#		if vel.y > 0:
 	#			get_node("AnimatedSprite").play("fall")
+				
+			if has_jetpack and Input.is_action_pressed("ui_accept") and jetpack_fuel > 0:
+				vel.y = vel.y -JETPACK_THRUST
+				jetpack_fuel = jetpack_fuel - (delta*JETPACK_BURN_RATE)
+				get_node("AnimatedSprite").play("jump")
 			
 			if is_on_ceiling():
 				vel.y = 0

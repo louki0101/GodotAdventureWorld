@@ -6,7 +6,7 @@ var is_hanging = true
 var is_passed_out = false
 var is_in_knockback = false
 
-var health = 2
+var health = 5
 
 var last_pos = Vector2(0,0)
 
