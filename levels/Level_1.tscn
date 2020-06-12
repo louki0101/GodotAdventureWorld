@@ -40,7 +40,7 @@ func _on_DarknessArea2D_body_exited(body):
 		body.toggle_light(false)
 "
 
-[node name="Level_1" type="Node2D" index="0"]
+[node name="Level_1" type="Node2D"]
 
 __meta__ = {
 "_edit_lock_": true

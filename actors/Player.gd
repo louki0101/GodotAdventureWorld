@@ -8,6 +8,7 @@ const JETPACK_MAX_FUEL = 10
 const JETPACK_BURN_RATE = 5
 const JETPACK_THRUST = 50
 const JETPACK_REFILL_RATE = 1
+const JETPACK_SPRITE_OFFSET = 16
 
 var jetpack_fuel = JETPACK_MAX_FUEL
 
@@ -26,6 +27,11 @@ func _ready():
 	
 	toggle_light(false)
 	$Pickaxe.hide()
+	
+	$JetpackSprite.hide()
+	$HUDCanvasLayer/JetpackFuelProgress.max_value = JETPACK_MAX_FUEL
+	$HUDCanvasLayer/JetpackFuelProgress.min_value = 0
+	$HUDCanvasLayer/JetpackFuelProgress.hide()
 	
 	#test inventory items
 	#add_item('coin')
@@ -47,6 +53,7 @@ func add_item(item_to_add):
 	$HUDCanvasLayer.update_inventory(inventory)
 	if item_to_add == 'jetpack':
 		has_jetpack = true
+		$JetpackSprite.show()
 
 func remove_item(item_to_remove):
 	inventory.erase(item_to_remove)
@@ -99,6 +106,12 @@ func swing_pickaxe():
 
 
 func actor_behavior(delta):
+	if has_jetpack:
+		$HUDCanvasLayer/JetpackFuelProgress.value = jetpack_fuel
+		$HUDCanvasLayer/JetpackFuelProgress.show()
+	
+	
+	
 	#gravity
 	if is_in_water:
 		vel.y = min(vel.y + (GRAV/5), GRAV_MAX/5)
@@ -125,6 +138,9 @@ func actor_behavior(delta):
 		vel.x = 0
 	
 	if is_in_water:
+		if has_jetpack:
+			$HUDCanvasLayer/JetpackFuelProgress.hide()
+		
 		get_node("AnimatedSprite").play("swim")
 		if Input.is_key_pressed(KEY_RIGHT):
 			vel.x = min(vel.x + ACCELERATION/2, MAX_SPEED/2)
@@ -139,14 +155,21 @@ func actor_behavior(delta):
 		if Input.is_action_just_pressed("ui_accept"):
 				vel.y = SWIM_HEIGHT
 	else:
+		
+		#if has_jetpack:
+			
+		
+		
 		if Input.is_key_pressed(KEY_RIGHT):
 			vel.x = min(vel.x + ACCELERATION, MAX_SPEED)
 			get_node("AnimatedSprite").flip_h = false
 			if is_on_floor(): get_node("AnimatedSprite").play("walk")
+			$JetpackSprite.position.x = -JETPACK_SPRITE_OFFSET
 		elif Input.is_key_pressed(KEY_LEFT):
 			vel.x = max(vel.x - ACCELERATION, -MAX_SPEED)
 			get_node("AnimatedSprite").flip_h = true
 			if is_on_floor(): get_node("AnimatedSprite").play("walk")
+			$JetpackSprite.position.x = JETPACK_SPRITE_OFFSET
 		else:
 			vel.x = lerp(vel.x, 0, 0.1)
 			if is_on_floor(): get_node("AnimatedSprite").play("idle")

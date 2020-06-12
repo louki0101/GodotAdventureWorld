@@ -1,58 +1,59 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://actors/Player.gd" type="Script" id=1]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_idle.png" type="Texture" id=2]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_hurt.png" type="Texture" id=3]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_swim1.png" type="Texture" id=4]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_swim2.png" type="Texture" id=5]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_fall.png" type="Texture" id=6]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_jump.png" type="Texture" id=7]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_duck.png" type="Texture" id=8]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_walk1.png" type="Texture" id=9]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_walk2.png" type="Texture" id=10]
-[ext_resource path="res://sound/splash.wav" type="AudioStream" id=11]
-[ext_resource path="res://objects/HUDCanvasLayer.tscn" type="PackedScene" id=12]
-[ext_resource path="res://art/hud/title_GameOver.png" type="Texture" id=13]
-[ext_resource path="res://art/fx/player_light_transparent_inverse.png" type="Texture" id=14]
-[ext_resource path="res://art/fx/fire_01.png" type="Texture" id=15]
-[ext_resource path="res://art/items/item_toolPickaxe.png" type="Texture" id=16]
+[ext_resource path="res://art/items/jetpack_item.png" type="Texture" id=2]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_idle.png" type="Texture" id=3]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_hurt.png" type="Texture" id=4]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_walk1.png" type="Texture" id=5]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_walk2.png" type="Texture" id=6]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_swim1.png" type="Texture" id=7]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_swim2.png" type="Texture" id=8]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_jump.png" type="Texture" id=9]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_duck.png" type="Texture" id=10]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_fall.png" type="Texture" id=11]
+[ext_resource path="res://sound/splash.wav" type="AudioStream" id=12]
+[ext_resource path="res://objects/HUDCanvasLayer.tscn" type="PackedScene" id=13]
+[ext_resource path="res://art/hud/title_GameOver.png" type="Texture" id=14]
+[ext_resource path="res://art/fx/player_light_transparent_inverse.png" type="Texture" id=15]
+[ext_resource path="res://art/fx/fire_01.png" type="Texture" id=16]
+[ext_resource path="res://art/items/item_toolPickaxe.png" type="Texture" id=17]
 
 [sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
-"frames": [ ExtResource( 2 ) ],
+"frames": [ ExtResource( 3 ) ],
 "loop": true,
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ) ],
+"frames": [ ExtResource( 4 ) ],
 "loop": true,
 "name": "hurt",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "swim",
 "speed": 3.0
 }, {
-"frames": [ ExtResource( 6 ) ],
-"loop": true,
-"name": "fall",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 7 ) ],
+"frames": [ ExtResource( 9 ) ],
 "loop": true,
 "name": "jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 8 ) ],
+"frames": [ ExtResource( 10 ) ],
 "loop": true,
 "name": "duck",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 9 ), ExtResource( 10 ) ],
+"frames": [ ExtResource( 11 ) ],
 "loop": true,
-"name": "walk",
+"name": "fall",
 "speed": 5.0
 } ]
 
@@ -305,7 +306,7 @@ tracks/0/keys = {
 "values": [ 2.0, 2.0, 2.1, 2.0, 2.0, 2.1, 2.0, 2.0, 1.9, 2.0, 2.0, 2.1, 2.0, 2.0 ]
 }
 
-[node name="Player" type="KinematicBody2D" groups=[
+[node name="Player" type="KinematicBody2D" index="0" groups=[
 "player",
 "moves_bushes",
 ]]
@@ -317,24 +318,31 @@ collision/safe_margin = 0.001
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "collision" ]
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
+[node name="JetpackSprite" type="Sprite" parent="." index="0"]
+
+position = Vector2( -16, 4.36938 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="1"]
 
 position = Vector2( 0, -9 )
 frames = SubResource( 1 )
 animation = "idle"
 _sections_unfolded = [ "Transform", "Visibility" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
 
 shape = SubResource( 2 )
 
-[node name="SplashPosition2D" type="Position2D" parent="." index="2"]
+[node name="SplashPosition2D" type="Position2D" parent="." index="3"]
 
 position = Vector2( 2, 41 )
 
-[node name="SplashAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="3"]
+[node name="SplashAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="4"]
 
-stream = ExtResource( 11 )
+stream = ExtResource( 12 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
@@ -343,9 +351,9 @@ attenuation = 1.0
 bus = "Master"
 area_mask = 1
 
-[node name="HUDCanvasLayer" parent="." index="4" instance=ExtResource( 12 )]
+[node name="HUDCanvasLayer" parent="." index="5" instance=ExtResource( 13 )]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
 
 root_node = NodePath("..")
 autoplay = "_SETUP"
@@ -360,7 +368,7 @@ anims/game_over = SubResource( 7 )
 anims/pass_out = SubResource( 8 )
 blend_times = [  ]
 
-[node name="GameOverCanvasLayer" type="CanvasLayer" parent="." index="6"]
+[node name="GameOverCanvasLayer" type="CanvasLayer" parent="." index="7"]
 
 editor/display_folded = true
 layer = 1
@@ -402,11 +410,11 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 13 )
+texture = ExtResource( 14 )
 stretch_mode = 0
 _sections_unfolded = [ "Visibility" ]
 
-[node name="FeetRays" type="Node2D" parent="." index="7"]
+[node name="FeetRays" type="Node2D" parent="." index="8"]
 
 [node name="RayCast2D" type="RayCast2D" parent="FeetRays" index="0"]
 
@@ -448,7 +456,7 @@ exclude_parent = true
 cast_to = Vector2( 0, 18 )
 collision_mask = 4
 
-[node name="ScreenFadeCanvasLayer" type="CanvasLayer" parent="." index="8"]
+[node name="ScreenFadeCanvasLayer" type="CanvasLayer" parent="." index="9"]
 
 editor/display_folded = true
 layer = 1
@@ -472,7 +480,7 @@ size_flags_vertical = 1
 color = Color( 0, 0, 0, 0 )
 _sections_unfolded = [ "Anchor", "Margin", "Rect", "Visibility" ]
 
-[node name="FadeCanvasLayer" type="CanvasLayer" parent="." index="9"]
+[node name="FadeCanvasLayer" type="CanvasLayer" parent="." index="10"]
 
 layer = 1
 offset = Vector2( 0, 0 )
@@ -495,13 +503,13 @@ size_flags_vertical = 1
 color = Color( 0, 0, 0, 0 )
 _sections_unfolded = [ "Anchor", "Margin", "Rect", "Visibility" ]
 
-[node name="Torch" type="Node2D" parent="." index="10"]
+[node name="Torch" type="Node2D" parent="." index="11"]
 
 [node name="TorchLight2D" type="Light2D" parent="Torch" index="0"]
 
 enabled = true
 editor_only = false
-texture = ExtResource( 14 )
+texture = ExtResource( 15 )
 offset = Vector2( 0, 0 )
 texture_scale = 2.0
 color = Color( 1, 1, 1, 1 )
@@ -527,7 +535,7 @@ _sections_unfolded = [ "Range" ]
 position = Vector2( -0.615559, 4.69363 )
 enabled = true
 editor_only = false
-texture = ExtResource( 15 )
+texture = ExtResource( 16 )
 offset = Vector2( 0, 0 )
 texture_scale = 2.0
 color = Color( 1, 0.726563, 0, 1 )
@@ -558,14 +566,15 @@ anims/_SETUP = SubResource( 9 )
 anims/flicker = SubResource( 10 )
 blend_times = [  ]
 
-[node name="Pickaxe" type="Node2D" parent="." index="11"]
+[node name="Pickaxe" type="Node2D" parent="." index="12"]
 
 _sections_unfolded = [ "Transform" ]
 
 [node name="Sprite" type="Sprite" parent="Pickaxe" index="0"]
 
 position = Vector2( 45, 0 )
-texture = ExtResource( 16 )
+texture = ExtResource( 17 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="Position2D" type="Position2D" parent="Pickaxe" index="1"]
 
