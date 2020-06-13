@@ -11,7 +11,8 @@ const JETPACK_REFILL_RATE = 1
 const JETPACK_SPRITE_OFFSET = 16
 
 var jetpack_fuel = JETPACK_MAX_FUEL
-
+var jetpack_on = false
+var jump_released_in_air = false
 
 
 
@@ -32,6 +33,8 @@ func _ready():
 	$HUDCanvasLayer/JetpackFuelProgress.max_value = JETPACK_MAX_FUEL
 	$HUDCanvasLayer/JetpackFuelProgress.min_value = 0
 	$HUDCanvasLayer/JetpackFuelProgress.hide()
+	$JetpackSprite/JetpackParticles2D.emitting = false
+	$JetpackSprite/JetpackParticles2D2.emitting = false
 	
 	#test inventory items
 	#add_item('coin')
@@ -106,6 +109,7 @@ func swing_pickaxe():
 
 
 func actor_behavior(delta):
+	jetpack_on = false
 	if has_jetpack:
 		$HUDCanvasLayer/JetpackFuelProgress.value = jetpack_fuel
 		$HUDCanvasLayer/JetpackFuelProgress.show()
@@ -180,6 +184,7 @@ func actor_behavior(delta):
 		
 		if is_on_floor():
 			vel.y = 10
+			jump_released_in_air = false
 			
 			if has_jetpack and jetpack_fuel < JETPACK_MAX_FUEL:
 				jetpack_fuel = jetpack_fuel + (delta*JETPACK_REFILL_RATE)
@@ -189,15 +194,27 @@ func actor_behavior(delta):
 		else: #in the air...
 			check_jump_attack()
 	#		if vel.y > 0:
-	#			get_node("AnimatedSprite").play("fall")
+	#			get_node("AnimatedSprite").play("fall
+			if Input.is_action_just_released("ui_accept"): jump_released_in_air = true
 				
-			if has_jetpack and Input.is_action_pressed("ui_accept") and jetpack_fuel > 0:
+			if has_jetpack and jump_released_in_air and Input.is_action_pressed("ui_accept") and jetpack_fuel > 0:
 				vel.y = vel.y -JETPACK_THRUST
 				jetpack_fuel = jetpack_fuel - (delta*JETPACK_BURN_RATE)
 				get_node("AnimatedSprite").play("jump")
+				if $JetpackAudio.playing == false: $JetpackAudio.play()
+				$JetpackSprite/JetpackParticles2D.emitting = true
+				$JetpackSprite/JetpackParticles2D2.emitting = true
+				jetpack_on = true
+			
 			
 			if is_on_ceiling():
 				vel.y = 0
+	
+	#turn jetpack audio off when its not running
+	if jetpack_on == false and $JetpackAudio.playing == true:
+		$JetpackAudio.stop()
+		$JetpackSprite/JetpackParticles2D.emitting = false
+		$JetpackSprite/JetpackParticles2D2.emitting = false
 
 
 

@@ -40,7 +40,7 @@ func _on_DarknessArea2D_body_exited(body):
 		body.toggle_light(false)
 "
 
-[node name="Level_1" type="Node2D"]
+[node name="Level_1" type="Node2D" index="0"]
 
 __meta__ = {
 "_edit_lock_": true
@@ -148,7 +148,7 @@ position = Vector2( -7662.37, 3080.29 )
 
 [node name="JetpackPickup" parent="BackgroundStaticObjects/Cave" index="4" instance=ExtResource( 9 )]
 
-position = Vector2( -8258.09, 3104.27 )
+position = Vector2( -4161.18, 2695.89 )
 
 [node name="ItemDropsTarget" type="Node2D" parent="BackgroundStaticObjects" index="4" groups=[
 "item_drop_target",
@@ -160,7 +160,7 @@ __meta__ = {
 
 [node name="Player" parent="." index="3" instance=ExtResource( 10 )]
 
-position = Vector2( -7875.07, 3096.8 )
+position = Vector2( -3980.37, 2642.59 )
 
 [node name="Camera2D" type="Camera2D" parent="Player" index="2"]
 
