@@ -6,13 +6,13 @@
 [ext_resource path="res://sound/402816__jacksonacademyashmore__jetpack-loop.wav" type="AudioStream" id=4]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_idle.png" type="Texture" id=5]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_hurt.png" type="Texture" id=6]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_walk1.png" type="Texture" id=7]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_walk2.png" type="Texture" id=8]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_swim1.png" type="Texture" id=9]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_swim2.png" type="Texture" id=10]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_fall.png" type="Texture" id=11]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_duck.png" type="Texture" id=12]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_jump.png" type="Texture" id=13]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_fall.png" type="Texture" id=7]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_swim1.png" type="Texture" id=8]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_swim2.png" type="Texture" id=9]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_duck.png" type="Texture" id=10]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_jump.png" type="Texture" id=11]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_walk1.png" type="Texture" id=12]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_walk2.png" type="Texture" id=13]
 [ext_resource path="res://sound/splash.wav" type="AudioStream" id=14]
 [ext_resource path="res://objects/HUDCanvasLayer.tscn" type="PackedScene" id=15]
 [ext_resource path="res://art/hud/title_GameOver.png" type="Texture" id=16]
@@ -20,31 +20,31 @@
 [ext_resource path="res://art/fx/fire_01.png" type="Texture" id=18]
 [ext_resource path="res://art/items/item_toolPickaxe.png" type="Texture" id=19]
 
-[sub_resource type="Gradient" id=11]
+[sub_resource type="Gradient" id=1]
 
 offsets = PoolRealArray( 0, 0.946502 )
 colors = PoolColorArray( 0.910156, 0.324921, 0.145767, 1, 0.988281, 0.97863, 0.833862, 0.182314 )
 
-[sub_resource type="GradientTexture" id=12]
+[sub_resource type="GradientTexture" id=2]
 
 flags = 4
-gradient = SubResource( 11 )
+gradient = SubResource( 1 )
 width = 2048
 
-[sub_resource type="Curve" id=13]
+[sub_resource type="Curve" id=3]
 
 min_value = 0.0
 max_value = 1.0
 bake_resolution = 100
 _data = [ Vector2( 0, 0.124023 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.360352 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=14]
+[sub_resource type="CurveTexture" id=4]
 
 flags = 4
 width = 2048
-curve = SubResource( 13 )
+curve = SubResource( 3 )
 
-[sub_resource type="ParticlesMaterial" id=15]
+[sub_resource type="ParticlesMaterial" id=5]
 
 render_priority = 0
 trail_divisor = 1
@@ -73,8 +73,8 @@ angle = 0.0
 angle_random = 0.0
 scale = 1.0
 scale_random = 0.0
-scale_curve = SubResource( 14 )
-color_ramp = SubResource( 12 )
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 2 )
 hue_variation = 0.0
 hue_variation_random = 0.0
 anim_speed = 0.0
@@ -84,7 +84,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Angular Velocity", "Color", "Gravity", "Hue Variation", "Initial Velocity", "Scale", "Spread" ]
 
-[sub_resource type="SpriteFrames" id=1]
+[sub_resource type="SpriteFrames" id=6]
 
 animations = [ {
 "frames": [ ExtResource( 5 ) ],
@@ -97,40 +97,39 @@ animations = [ {
 "name": "hurt",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ), ExtResource( 8 ) ],
-"loop": true,
-"name": "walk",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 9 ), ExtResource( 10 ) ],
-"loop": true,
-"name": "swim",
-"speed": 3.0
-}, {
-"frames": [ ExtResource( 11 ) ],
+"frames": [ ExtResource( 7 ) ],
 "loop": true,
 "name": "fall",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 12 ) ],
+"frames": [ ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "swim",
+"speed": 3.0
+}, {
+"frames": [ ExtResource( 10 ) ],
 "loop": true,
 "name": "duck",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 13 ) ],
+"frames": [ ExtResource( 11 ) ],
 "loop": true,
 "name": "jump",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 12 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=7]
 
 custom_solver_bias = 0.0
 extents = Vector2( 25.4142, 45.7339 )
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=8]
 
-resource_name = "FadeIn"
 length = 0.6
 loop = false
 step = 0.1
@@ -147,9 +146,8 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=9]
 
-resource_name = "FadeOut"
 length = 0.6
 loop = false
 step = 0.1
@@ -166,7 +164,7 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=10]
 
 length = 1.0
 loop = false
@@ -232,7 +230,7 @@ tracks/4/keys = {
 "values": [ Color( 0, 0, 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=11]
 
 length = 1.2
 loop = false
@@ -250,7 +248,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.364627 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.364627 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.364627 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=12]
 
 length = 4.0
 loop = false
@@ -292,7 +290,7 @@ tracks/2/keys = {
 "values": [ Color( 0.863281, 0.118027, 0.118027, 0 ), Color( 0.863281, 0.118027, 0.118027, 0 ), Color( 0.863281, 0.118027, 0.118027, 1 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=13]
 
 length = 1.5
 loop = false
@@ -334,9 +332,8 @@ tracks/2/keys = {
 "values": [ "hurt", "hurt", "idle" ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=14]
 
-resource_name = "_SETUP"
 length = 1.0
 loop = false
 step = 0.1
@@ -353,9 +350,8 @@ tracks/0/keys = {
 "values": [ 2.0 ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=15]
 
-resource_name = "flicker"
 length = 1.5
 loop = true
 step = 0.01
@@ -409,7 +405,7 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
 draw_order = 0
-process_material = SubResource( 15 )
+process_material = SubResource( 5 )
 texture = ExtResource( 3 )
 normal_map = null
 h_frames = 1
@@ -434,7 +430,7 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
 draw_order = 0
-process_material = SubResource( 15 )
+process_material = SubResource( 5 )
 texture = ExtResource( 3 )
 normal_map = null
 h_frames = 1
@@ -455,13 +451,13 @@ area_mask = 1
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="2"]
 
 position = Vector2( 0, -9 )
-frames = SubResource( 1 )
+frames = SubResource( 6 )
 animation = "idle"
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
 
-shape = SubResource( 2 )
+shape = SubResource( 7 )
 
 [node name="SplashPosition2D" type="Position2D" parent="." index="4"]
 
@@ -487,12 +483,12 @@ autoplay = "_SETUP"
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/FadeIn = SubResource( 3 )
-anims/FadeOut = SubResource( 4 )
-anims/_SETUP = SubResource( 5 )
-anims/flash = SubResource( 6 )
-anims/game_over = SubResource( 7 )
-anims/pass_out = SubResource( 8 )
+anims/FadeIn = SubResource( 8 )
+anims/FadeOut = SubResource( 9 )
+anims/_SETUP = SubResource( 10 )
+anims/flash = SubResource( 11 )
+anims/game_over = SubResource( 12 )
+anims/pass_out = SubResource( 13 )
 blend_times = [  ]
 
 [node name="GameOverCanvasLayer" type="CanvasLayer" parent="." index="8"]
@@ -689,8 +685,8 @@ autoplay = "flicker"
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/_SETUP = SubResource( 9 )
-anims/flicker = SubResource( 10 )
+anims/_SETUP = SubResource( 14 )
+anims/flicker = SubResource( 15 )
 blend_times = [  ]
 
 [node name="Pickaxe" type="Node2D" parent="." index="13"]
