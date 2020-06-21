@@ -7,7 +7,7 @@ var has_jetpack = false
 const JETPACK_MAX_FUEL = 10
 const JETPACK_BURN_RATE = 5
 const JETPACK_THRUST = 50
-const JETPACK_REFILL_RATE = 1
+const JETPACK_REFILL_RATE = 2
 const JETPACK_SPRITE_OFFSET = 16
 
 var jetpack_fuel = JETPACK_MAX_FUEL

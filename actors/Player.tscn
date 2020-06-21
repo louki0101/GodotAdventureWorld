@@ -7,12 +7,12 @@
 [ext_resource path="res://art/Adventurer/Poses/adventurer_idle.png" type="Texture" id=5]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_hurt.png" type="Texture" id=6]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_fall.png" type="Texture" id=7]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_swim1.png" type="Texture" id=8]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_swim2.png" type="Texture" id=9]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_duck.png" type="Texture" id=10]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_jump.png" type="Texture" id=11]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_walk1.png" type="Texture" id=12]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_walk2.png" type="Texture" id=13]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_duck.png" type="Texture" id=8]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_jump.png" type="Texture" id=9]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_walk1.png" type="Texture" id=10]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_walk2.png" type="Texture" id=11]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_swim1.png" type="Texture" id=12]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_swim2.png" type="Texture" id=13]
 [ext_resource path="res://sound/splash.wav" type="AudioStream" id=14]
 [ext_resource path="res://objects/HUDCanvasLayer.tscn" type="PackedScene" id=15]
 [ext_resource path="res://art/hud/title_GameOver.png" type="Texture" id=16]
@@ -102,25 +102,25 @@ animations = [ {
 "name": "fall",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 8 ), ExtResource( 9 ) ],
-"loop": true,
-"name": "swim",
-"speed": 3.0
-}, {
-"frames": [ ExtResource( 10 ) ],
+"frames": [ ExtResource( 8 ) ],
 "loop": true,
 "name": "duck",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 11 ) ],
+"frames": [ ExtResource( 9 ) ],
 "loop": true,
 "name": "jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 12 ), ExtResource( 13 ) ],
+"frames": [ ExtResource( 10 ), ExtResource( 11 ) ],
 "loop": true,
 "name": "walk",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 12 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "swim",
+"speed": 3.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=7]
