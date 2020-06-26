@@ -22,6 +22,7 @@ func update_inventory(inventory):
 	$Inventory/KeyBlue.hide()
 	$Inventory/KeyYellow.hide()
 	$Inventory/Jetpack.hide()
+	$Inventory/Boomstick.hide()
 	
 	
 	for item in inventory:
@@ -31,5 +32,6 @@ func update_inventory(inventory):
 		if item == 'key_blue': $Inventory/KeyBlue.show()
 		if item == 'key_yellow': $Inventory/KeyYellow.show()
 		if item == 'jetpack': $Inventory/Jetpack.show()
+		if item == 'boomstick': $Inventory/Boomstick.show()
 		
 		

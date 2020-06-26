@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://actors/Player.gd" type="Script" id=1]
 [ext_resource path="res://art/items/jetpack_item.png" type="Texture" id=2]
@@ -6,19 +6,20 @@
 [ext_resource path="res://sound/402816__jacksonacademyashmore__jetpack-loop.wav" type="AudioStream" id=4]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_idle.png" type="Texture" id=5]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_hurt.png" type="Texture" id=6]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_fall.png" type="Texture" id=7]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_duck.png" type="Texture" id=8]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_jump.png" type="Texture" id=9]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_walk1.png" type="Texture" id=10]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_walk2.png" type="Texture" id=11]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_swim1.png" type="Texture" id=12]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_swim2.png" type="Texture" id=13]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_walk1.png" type="Texture" id=7]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_walk2.png" type="Texture" id=8]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_duck.png" type="Texture" id=9]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_jump.png" type="Texture" id=10]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_swim1.png" type="Texture" id=11]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_swim2.png" type="Texture" id=12]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_fall.png" type="Texture" id=13]
 [ext_resource path="res://sound/splash.wav" type="AudioStream" id=14]
 [ext_resource path="res://objects/HUDCanvasLayer.tscn" type="PackedScene" id=15]
 [ext_resource path="res://art/hud/title_GameOver.png" type="Texture" id=16]
 [ext_resource path="res://art/fx/player_light_transparent_inverse.png" type="Texture" id=17]
 [ext_resource path="res://art/fx/fire_01.png" type="Texture" id=18]
 [ext_resource path="res://art/items/item_toolPickaxe.png" type="Texture" id=19]
+[ext_resource path="res://art/items/raygunPurple.png" type="Texture" id=20]
 
 [sub_resource type="Gradient" id=1]
 
@@ -97,30 +98,30 @@ animations = [ {
 "name": "hurt",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ) ],
-"loop": true,
-"name": "fall",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 8 ) ],
-"loop": true,
-"name": "duck",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 9 ) ],
-"loop": true,
-"name": "jump",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 10 ), ExtResource( 11 ) ],
+"frames": [ ExtResource( 7 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "walk",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 12 ), ExtResource( 13 ) ],
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "duck",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "jump",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 12 ) ],
 "loop": true,
 "name": "swim",
 "speed": 3.0
+}, {
+"frames": [ ExtResource( 13 ) ],
+"loop": true,
+"name": "fall",
+"speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=7]
@@ -368,7 +369,7 @@ tracks/0/keys = {
 "values": [ 2.0, 2.0, 2.1, 2.0, 2.0, 2.1, 2.0, 2.0, 1.9, 2.0, 2.0, 2.1, 2.0, 2.0 ]
 }
 
-[node name="Player" type="KinematicBody2D" groups=[
+[node name="Player" type="KinematicBody2D" index="0" groups=[
 "player",
 "moves_bushes",
 ]]
@@ -539,6 +540,8 @@ _sections_unfolded = [ "Visibility" ]
 
 [node name="FeetRays" type="Node2D" parent="." index="9"]
 
+editor/display_folded = true
+
 [node name="RayCast2D" type="RayCast2D" parent="FeetRays" index="0"]
 
 position = Vector2( 0, 41 )
@@ -691,6 +694,7 @@ blend_times = [  ]
 
 [node name="Pickaxe" type="Node2D" parent="." index="13"]
 
+editor/display_folded = true
 _sections_unfolded = [ "Transform" ]
 
 [node name="Sprite" type="Sprite" parent="Pickaxe" index="0"]
@@ -702,5 +706,21 @@ _sections_unfolded = [ "Transform" ]
 [node name="Position2D" type="Position2D" parent="Pickaxe" index="1"]
 
 position = Vector2( 69, -1 )
+
+[node name="Boomstick" type="Node2D" parent="." index="14"]
+
+_sections_unfolded = [ "Transform" ]
+
+[node name="Sprite" type="Sprite" parent="Boomstick" index="0"]
+
+position = Vector2( 25.7567, 13.3076 )
+scale = Vector2( 1.7, 1.7 )
+texture = ExtResource( 20 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Position2D" type="Position2D" parent="Boomstick" index="1"]
+
+position = Vector2( 60.3135, 13.093 )
+rotation = 0.0278046
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://utils/ExitGameKey.tscn" type="PackedScene" id=1]
 [ext_resource path="res://utils/FullscreenToggleKey.tscn" type="PackedScene" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://objects/Bound.tscn" type="PackedScene" id=14]
 [ext_resource path="res://objects/WaterArea2D.tscn" type="PackedScene" id=15]
 [ext_resource path="res://objects/Gate_Yellow.tscn" type="PackedScene" id=16]
+[ext_resource path="res://objects/BoomstickPickup.tscn" type="PackedScene" id=17]
 
 [sub_resource type="Curve2D" id=1]
 
@@ -42,7 +43,7 @@ func _on_DarknessArea2D_body_exited(body):
 		body.toggle_light(false)
 "
 
-[node name="Level_1" type="Node2D" index="0"]
+[node name="Level_1" type="Node2D"]
 
 __meta__ = {
 "_edit_lock_": true
@@ -163,7 +164,7 @@ position = Vector2( 7728.89, -955.141 )
 
 [node name="Player" parent="." index="4" instance=ExtResource( 10 )]
 
-position = Vector2( 7510.96, -999.15 )
+position = Vector2( 7927.1, -2307.37 )
 
 [node name="Camera2D" type="Camera2D" parent="Player" index="2"]
 
@@ -276,6 +277,7 @@ __meta__ = {
 
 [node name="Castle" type="Node2D" parent="ForegroundStaticObjects" index="4"]
 
+editor/display_folded = true
 __meta__ = {
 "_edit_lock_": true
 }
@@ -287,6 +289,16 @@ position = Vector2( 14629.8, -978.831 )
 [node name="Gate_Yellow2" parent="ForegroundStaticObjects/Castle" index="1" instance=ExtResource( 16 )]
 
 position = Vector2( 15329.2, -979.667 )
+
+[node name="BoomstickTower" type="Node2D" parent="ForegroundStaticObjects" index="5"]
+
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="BoomstickPickup" parent="ForegroundStaticObjects/BoomstickTower" index="0" instance=ExtResource( 17 )]
+
+position = Vector2( 8125.64, -2347.8 )
 
 [node name="ForegroundTileMap" type="TileMap" parent="." index="7"]
 
