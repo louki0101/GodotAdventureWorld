@@ -16,7 +16,7 @@ var jump_released_in_air = false
 
 
 var has_boomstick = false
-
+onready var boomstick_shot_scn = preload("res://objects/BoomstickShot.tscn")
 
 
 
@@ -115,6 +115,13 @@ func swing_pickaxe():
 		yield(get_tree().create_timer(.5), "timeout")
 		$Pickaxe.hide()
 
+func fire_boomstick():
+	var shot = boomstick_shot_scn.instance()
+	get_tree().get_nodes_in_group('item_drop_target')[0].add_child(shot)
+	shot.global_transform = $Boomstick/Position2D.global_transform
+	
+
+
 
 
 
@@ -152,6 +159,9 @@ func actor_behavior(delta):
 			$Boomstick.scale.x = -1
 		else:
 			$Boomstick.scale.x = 1
+		
+		if Input.is_action_just_pressed('fire_boomstick'):
+			fire_boomstick()
 	
 	
 

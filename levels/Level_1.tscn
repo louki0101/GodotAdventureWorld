@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://utils/ExitGameKey.tscn" type="PackedScene" id=1]
 [ext_resource path="res://utils/FullscreenToggleKey.tscn" type="PackedScene" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://objects/WaterArea2D.tscn" type="PackedScene" id=15]
 [ext_resource path="res://objects/Gate_Yellow.tscn" type="PackedScene" id=16]
 [ext_resource path="res://objects/BoomstickPickup.tscn" type="PackedScene" id=17]
+[ext_resource path="res://actors/EnemySnail.tscn" type="PackedScene" id=18]
 
 [sub_resource type="Curve2D" id=1]
 
@@ -86,7 +87,6 @@ __meta__ = {
 
 [node name="BackgroundStaticObjects" type="Node2D" parent="." index="2"]
 
-editor/display_folded = true
 __meta__ = {
 "_edit_lock_": true
 }
@@ -299,6 +299,12 @@ __meta__ = {
 [node name="BoomstickPickup" parent="ForegroundStaticObjects/BoomstickTower" index="0" instance=ExtResource( 17 )]
 
 position = Vector2( 8125.64, -2347.8 )
+
+[node name="EnemySnail" parent="ForegroundStaticObjects/BoomstickTower" index="1" instance=ExtResource( 18 )]
+
+position = Vector2( 9236.46, -891.988 )
+scale = Vector2( 3, 3 )
+_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
 [node name="ForegroundTileMap" type="TileMap" parent="." index="7"]
 

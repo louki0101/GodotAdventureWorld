@@ -6,13 +6,13 @@
 [ext_resource path="res://sound/402816__jacksonacademyashmore__jetpack-loop.wav" type="AudioStream" id=4]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_idle.png" type="Texture" id=5]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_hurt.png" type="Texture" id=6]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_walk1.png" type="Texture" id=7]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_walk2.png" type="Texture" id=8]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_duck.png" type="Texture" id=9]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_jump.png" type="Texture" id=10]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_swim1.png" type="Texture" id=11]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_swim2.png" type="Texture" id=12]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_fall.png" type="Texture" id=13]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_fall.png" type="Texture" id=7]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_jump.png" type="Texture" id=8]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_swim1.png" type="Texture" id=9]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_swim2.png" type="Texture" id=10]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_walk1.png" type="Texture" id=11]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_walk2.png" type="Texture" id=12]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_duck.png" type="Texture" id=13]
 [ext_resource path="res://sound/splash.wav" type="AudioStream" id=14]
 [ext_resource path="res://objects/HUDCanvasLayer.tscn" type="PackedScene" id=15]
 [ext_resource path="res://art/hud/title_GameOver.png" type="Texture" id=16]
@@ -98,29 +98,29 @@ animations = [ {
 "name": "hurt",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ), ExtResource( 8 ) ],
+"frames": [ ExtResource( 7 ) ],
 "loop": true,
-"name": "walk",
+"name": "fall",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 9 ) ],
-"loop": true,
-"name": "duck",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 10 ) ],
+"frames": [ ExtResource( 8 ) ],
 "loop": true,
 "name": "jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 11 ), ExtResource( 12 ) ],
+"frames": [ ExtResource( 9 ), ExtResource( 10 ) ],
 "loop": true,
 "name": "swim",
 "speed": 3.0
 }, {
+"frames": [ ExtResource( 11 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 13 ) ],
 "loop": true,
-"name": "fall",
+"name": "duck",
 "speed": 5.0
 } ]
 
@@ -370,8 +370,8 @@ tracks/0/keys = {
 }
 
 [node name="Player" type="KinematicBody2D" index="0" groups=[
-"player",
 "moves_bushes",
+"player",
 ]]
 
 input_pickable = false
@@ -721,6 +721,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="Position2D" type="Position2D" parent="Boomstick" index="1"]
 
 position = Vector2( 60.3135, 13.093 )
-rotation = 0.0278046
+rotation = -0.00541317
+_sections_unfolded = [ "Transform" ]
 
 
