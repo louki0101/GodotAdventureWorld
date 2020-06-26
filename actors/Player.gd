@@ -15,6 +15,10 @@ var jetpack_on = false
 var jump_released_in_air = false
 
 
+var has_boomstick = false
+
+
+
 
 
 
@@ -35,6 +39,10 @@ func _ready():
 	$HUDCanvasLayer/JetpackFuelProgress.hide()
 	$JetpackSprite/JetpackParticles2D.emitting = false
 	$JetpackSprite/JetpackParticles2D2.emitting = false
+	
+	
+	$Boomstick.hide()
+	
 	
 	#test inventory items
 	#add_item('coin')
@@ -57,6 +65,9 @@ func add_item(item_to_add):
 	if item_to_add == 'jetpack':
 		has_jetpack = true
 		$JetpackSprite.show()
+	if item_to_add == 'boomstick':
+		has_boomstick = true
+		$Boomstick.show()
 
 func remove_item(item_to_remove):
 	inventory.erase(item_to_remove)
@@ -135,6 +146,14 @@ func actor_behavior(delta):
 	else:
 		$Pickaxe.scale.x = 1
 	
+	
+	if has_boomstick:
+		if get_node("AnimatedSprite").flip_h == true:
+			$Boomstick.scale.x = -1
+		else:
+			$Boomstick.scale.x = 1
+	
+	
 
 	
 	
@@ -144,11 +163,12 @@ func actor_behavior(delta):
 	if is_in_water:
 		if has_jetpack:
 			$HUDCanvasLayer/JetpackFuelProgress.hide()
+				
 		
 		get_node("AnimatedSprite").play("swim")
 		if Input.is_key_pressed(KEY_RIGHT):
 			vel.x = min(vel.x + ACCELERATION/2, MAX_SPEED/2)
-			get_node("AnimatedSprite").flip_h = false
+			get_node("AnimatedSprite").flip_h = false			
 			
 		elif Input.is_key_pressed(KEY_LEFT):
 			vel.x = max(vel.x - ACCELERATION/2, -MAX_SPEED/2)

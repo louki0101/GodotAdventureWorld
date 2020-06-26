@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://objects/HUDCanvasLayer.gd" type="Script" id=1]
 [ext_resource path="res://art/hud/hud_heartFull.png" type="Texture" id=2]
@@ -8,10 +8,11 @@
 [ext_resource path="res://art/hud/hud_keyBlue.png" type="Texture" id=6]
 [ext_resource path="res://art/hud/hud_keyYellow.png" type="Texture" id=7]
 [ext_resource path="res://art/items/jetpack_item.png" type="Texture" id=8]
-[ext_resource path="res://art/ui/barBack_horizontal.png" type="Texture" id=9]
-[ext_resource path="res://art/ui/barGreen_horizontal.png" type="Texture" id=10]
+[ext_resource path="res://art/items/raygunPurple.png" type="Texture" id=9]
+[ext_resource path="res://art/ui/barBack_horizontal.png" type="Texture" id=10]
+[ext_resource path="res://art/ui/barGreen_horizontal.png" type="Texture" id=11]
 
-[node name="HUDCanvasLayer" type="CanvasLayer"]
+[node name="HUDCanvasLayer" type="CanvasLayer" index="0"]
 
 layer = 1
 offset = Vector2( 0, 0 )
@@ -153,9 +154,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 155.0
+margin_top = 156.0
 margin_right = 84.0
-margin_bottom = 219.0
+margin_bottom = 220.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -174,7 +175,6 @@ anchor_bottom = 0.0
 margin_top = 224.0
 margin_right = 84.0
 margin_bottom = 264.0
-rect_scale = Vector2( 1.3, 1.3 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -191,11 +191,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = -2.0
-margin_top = 280.0
-margin_right = 82.0
-margin_bottom = 320.0
-rect_scale = Vector2( 1.3, 1.3 )
+margin_top = 268.0
+margin_right = 84.0
+margin_bottom = 308.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -212,9 +210,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 340.0
+margin_top = 312.0
 margin_right = 84.0
-margin_bottom = 417.0
+margin_bottom = 389.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -222,6 +220,26 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 texture = ExtResource( 8 )
+stretch_mode = 0
+_sections_unfolded = [ "Rect" ]
+
+[node name="Boomstick" type="TextureRect" parent="Inventory" index="6"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 393.0
+margin_right = 84.0
+margin_bottom = 463.0
+rect_scale = Vector2( 1.7, 1.7 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 9 )
 stretch_mode = 0
 _sections_unfolded = [ "Rect" ]
 
@@ -248,9 +266,9 @@ page = 0.0
 value = 25.0
 exp_edit = false
 rounded = false
-texture_under = ExtResource( 9 )
+texture_under = ExtResource( 10 )
 texture_over = null
-texture_progress = ExtResource( 10 )
+texture_progress = ExtResource( 11 )
 radial_fill_degrees = 360.0
 radial_center_offset = Vector2( 0, 0 )
 nine_patch_stretch = true
