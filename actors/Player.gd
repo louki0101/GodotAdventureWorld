@@ -16,6 +16,7 @@ var jump_released_in_air = false
 
 
 var has_boomstick = false
+var boomstick_reloading = false
 onready var boomstick_shot_scn = preload("res://objects/BoomstickShot.tscn")
 
 
@@ -42,6 +43,9 @@ func _ready():
 	
 	
 	$Boomstick.hide()
+	$Boomstick/BurstParticles2D.one_shot = true
+	$Boomstick/BurstParticles2D.emitting = false
+	$Boomstick/SmokeParticles2D.emitting = false
 	
 	
 	#test inventory items
@@ -120,6 +124,15 @@ func fire_boomstick():
 	get_tree().get_nodes_in_group('item_drop_target')[0].add_child(shot)
 	shot.global_transform = $Boomstick/Position2D.global_transform
 	
+	$Boomstick/AudioShot.play()
+	$Boomstick/BurstParticles2D.emitting = true
+	
+	$Boomstick/SmokeParticles2D.emitting = true
+	$Boomstick/SmokeTimer.start()
+	
+	boomstick_reloading = true
+	yield(get_tree().create_timer(.5), "timeout")
+	boomstick_reloading = false
 
 
 
@@ -160,7 +173,7 @@ func actor_behavior(delta):
 		else:
 			$Boomstick.scale.x = 1
 		
-		if Input.is_action_just_pressed('fire_boomstick'):
+		if Input.is_action_just_pressed('fire_boomstick') and boomstick_reloading == false:
 			fire_boomstick()
 	
 	
@@ -256,3 +269,6 @@ func pass_out():
 	get_node("AnimationPlayer").play("game_over")
 	yield(get_node("AnimationPlayer"), "animation_finished")
 	SceneLoader.load_scene("res://main_menu.tscn", null)
+
+func _on_SmokeTimer_timeout():
+	$Boomstick/SmokeParticles2D.emitting = false

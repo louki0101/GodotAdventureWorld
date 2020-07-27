@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://actors/Player.gd" type="Script" id=1]
 [ext_resource path="res://art/items/jetpack_item.png" type="Texture" id=2]
@@ -7,12 +7,12 @@
 [ext_resource path="res://art/Adventurer/Poses/adventurer_idle.png" type="Texture" id=5]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_hurt.png" type="Texture" id=6]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_fall.png" type="Texture" id=7]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_jump.png" type="Texture" id=8]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_duck.png" type="Texture" id=8]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_swim1.png" type="Texture" id=9]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_swim2.png" type="Texture" id=10]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_walk1.png" type="Texture" id=11]
 [ext_resource path="res://art/Adventurer/Poses/adventurer_walk2.png" type="Texture" id=12]
-[ext_resource path="res://art/Adventurer/Poses/adventurer_duck.png" type="Texture" id=13]
+[ext_resource path="res://art/Adventurer/Poses/adventurer_jump.png" type="Texture" id=13]
 [ext_resource path="res://sound/splash.wav" type="AudioStream" id=14]
 [ext_resource path="res://objects/HUDCanvasLayer.tscn" type="PackedScene" id=15]
 [ext_resource path="res://art/hud/title_GameOver.png" type="Texture" id=16]
@@ -20,6 +20,7 @@
 [ext_resource path="res://art/fx/fire_01.png" type="Texture" id=18]
 [ext_resource path="res://art/items/item_toolPickaxe.png" type="Texture" id=19]
 [ext_resource path="res://art/items/raygunPurple.png" type="Texture" id=20]
+[ext_resource path="res://sound/275151__bird-man__gun-shot.wav" type="AudioStream" id=21]
 
 [sub_resource type="Gradient" id=1]
 
@@ -105,7 +106,7 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 8 ) ],
 "loop": true,
-"name": "jump",
+"name": "duck",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 9 ), ExtResource( 10 ) ],
@@ -120,7 +121,7 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 13 ) ],
 "loop": true,
-"name": "duck",
+"name": "jump",
 "speed": 5.0
 } ]
 
@@ -369,9 +370,124 @@ tracks/0/keys = {
 "values": [ 2.0, 2.0, 2.1, 2.0, 2.0, 2.1, 2.0, 2.0, 1.9, 2.0, 2.0, 2.1, 2.0, 2.0 ]
 }
 
+[sub_resource type="Gradient" id=17]
+
+offsets = PoolRealArray( 0, 1 )
+colors = PoolColorArray( 1, 0.09375, 0.09375, 1, 0.777344, 0.777344, 0.777344, 0 )
+
+[sub_resource type="GradientTexture" id=18]
+
+flags = 4
+gradient = SubResource( 17 )
+width = 2048
+
+[sub_resource type="ParticlesMaterial" id=16]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 1
+emission_sphere_radius = 5.0
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 50.0
+flatness = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 300.0
+initial_velocity_random = 0.0
+angular_velocity = 0.0
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 0.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.0
+scale = 0.1
+scale_random = 0.0
+color_ramp = SubResource( 18 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Color", "Emission Shape", "Gravity", "Initial Velocity", "Scale", "Spread" ]
+
+[sub_resource type="Gradient" id=19]
+
+offsets = PoolRealArray( 0, 1 )
+colors = PoolColorArray( 0.53125, 0.192993, 0.192993, 1, 0.691406, 0.675201, 0.675201, 0 )
+
+[sub_resource type="GradientTexture" id=20]
+
+flags = 4
+gradient = SubResource( 19 )
+width = 2048
+
+[sub_resource type="Curve" id=21]
+
+min_value = 0.0
+max_value = 1.0
+bake_resolution = 100
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.102539 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=22]
+
+flags = 4
+width = 2048
+curve = SubResource( 21 )
+
+[sub_resource type="ParticlesMaterial" id=23]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 0
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 45.0
+flatness = 0.0
+gravity = Vector3( 0, -20, 0 )
+initial_velocity = 1.0
+initial_velocity_random = 0.0
+angular_velocity = 0.0
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 5.0
+radial_accel_random = 0.5
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 0.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.0
+scale = 1.0
+scale_random = 0.0
+scale_curve = SubResource( 22 )
+color_ramp = SubResource( 20 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Gravity" ]
+
 [node name="Player" type="KinematicBody2D" index="0" groups=[
-"moves_bushes",
 "player",
+"moves_bushes",
 ]]
 
 input_pickable = false
@@ -723,5 +839,71 @@ _sections_unfolded = [ "Transform" ]
 position = Vector2( 60.3135, 13.093 )
 rotation = -0.00541317
 _sections_unfolded = [ "Transform" ]
+
+[node name="AudioShot" type="AudioStreamPlayer2D" parent="Boomstick" index="2"]
+
+stream = ExtResource( 21 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="BurstParticles2D" type="Particles2D" parent="Boomstick" index="3"]
+
+position = Vector2( 47.5338, 14.0841 )
+emitting = true
+amount = 30
+lifetime = 0.2
+one_shot = false
+preprocess = 0.0
+speed_scale = 1.0
+explosiveness = 0.8
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = true
+draw_order = 0
+process_material = SubResource( 16 )
+texture = ExtResource( 3 )
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Process Material", "Textures", "Time" ]
+
+[node name="SmokeParticles2D" type="Particles2D" parent="Boomstick" index="4"]
+
+position = Vector2( 46.6535, 5.72166 )
+emitting = true
+amount = 30
+lifetime = 2.5
+one_shot = false
+preprocess = 0.0
+speed_scale = 1.0
+explosiveness = 0.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = false
+draw_order = 0
+process_material = SubResource( 23 )
+texture = ExtResource( 3 )
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Drawing" ]
+
+[node name="SmokeTimer" type="Timer" parent="Boomstick" index="5"]
+
+process_mode = 1
+wait_time = 2.0
+one_shot = false
+autostart = false
+
+[connection signal="timeout" from="Boomstick/SmokeTimer" to="." method="_on_SmokeTimer_timeout"]
 
 

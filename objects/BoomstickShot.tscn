@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://art/items/stoneCaveRockSmall.png" type="Texture" id=1]
+[ext_resource path="res://art/fx/smokeWhite2.png" type="Texture" id=2]
 
-[sub_resource type="GDScript" id=3]
+[sub_resource type="GDScript" id=1]
 
 script/source = "extends Area2D
 
@@ -21,12 +22,23 @@ func _on_BoomstickShot_body_entered(body):
 	queue_free()
 "
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=2]
 
 custom_solver_bias = 0.0
 radius = 9.62239
 
-[sub_resource type="ParticlesMaterial" id=2]
+[sub_resource type="Gradient" id=4]
+
+offsets = PoolRealArray( 0, 1 )
+colors = PoolColorArray( 0.550781, 0.537872, 0.537872, 1, 0.8125, 0.8125, 0.8125, 0 )
+
+[sub_resource type="GradientTexture" id=5]
+
+flags = 4
+gradient = SubResource( 4 )
+width = 2048
+
+[sub_resource type="ParticlesMaterial" id=3]
 
 render_priority = 0
 trail_divisor = 1
@@ -36,7 +48,7 @@ flag_rotate_y = false
 flag_disable_z = true
 spread = 45.0
 flatness = 0.0
-gravity = Vector3( 0, 98, 0 )
+gravity = Vector3( 0, -20, 0 )
 initial_velocity = 1.0
 initial_velocity_random = 0.0
 angular_velocity = 0.0
@@ -53,9 +65,9 @@ damping = 0.0
 damping_random = 0.0
 angle = 0.0
 angle_random = 0.0
-scale = 1.0
+scale = 0.2
 scale_random = 0.0
-color = Color( 1, 1, 1, 1 )
+color_ramp = SubResource( 5 )
 hue_variation = 0.0
 hue_variation_random = 0.0
 anim_speed = 0.0
@@ -63,6 +75,7 @@ anim_speed_random = 0.0
 anim_offset = 0.0
 anim_offset_random = 0.0
 anim_loop = false
+_sections_unfolded = [ "Color", "Gravity", "Scale" ]
 
 [node name="BoomstickShot" type="Area2D"]
 
@@ -73,7 +86,7 @@ linear_damp = 0.1
 angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
-script = SubResource( 3 )
+script = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
@@ -83,29 +96,29 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Particles2D" type="Particles2D" parent="." index="2"]
 
 emitting = true
 amount = 30
-lifetime = 1.0
+lifetime = 2.0
 one_shot = false
 preprocess = 0.0
 speed_scale = 1.0
 explosiveness = 0.0
-randomness = 0.0
+randomness = 0.5
 fixed_fps = 0
 fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
 draw_order = 0
-process_material = SubResource( 2 )
-texture = null
+process_material = SubResource( 3 )
+texture = ExtResource( 2 )
 normal_map = null
 h_frames = 1
 v_frames = 1
-_sections_unfolded = [ "Drawing", "Process Material" ]
+_sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time" ]
 
 [connection signal="body_entered" from="." to="." method="_on_BoomstickShot_body_entered"]
 
