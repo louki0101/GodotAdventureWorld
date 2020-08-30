@@ -24,7 +24,7 @@ extents = Vector2( 28.2223, 18.7488 )
 custom_solver_bias = 0.0
 extents = Vector2( 30.8446, 21.546 )
 
-[node name="EnemyFish" type="KinematicBody2D" index="0"]
+[node name="EnemyFish" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 1
@@ -36,7 +36,6 @@ script = ExtResource( 1 )
 
 frames = SubResource( 1 )
 animation = "default"
-frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]

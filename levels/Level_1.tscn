@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://utils/ExitGameKey.tscn" type="PackedScene" id=1]
 [ext_resource path="res://utils/FullscreenToggleKey.tscn" type="PackedScene" id=2]
@@ -16,8 +16,11 @@
 [ext_resource path="res://objects/Bound.tscn" type="PackedScene" id=14]
 [ext_resource path="res://objects/WaterArea2D.tscn" type="PackedScene" id=15]
 [ext_resource path="res://objects/Gate_Yellow.tscn" type="PackedScene" id=16]
-[ext_resource path="res://objects/BoomstickPickup.tscn" type="PackedScene" id=17]
-[ext_resource path="res://actors/EnemySnail.tscn" type="PackedScene" id=18]
+[ext_resource path="res://objects/Key_Yellow.tscn" type="PackedScene" id=17]
+[ext_resource path="res://actors/FinalSpiderBoss.tscn" type="PackedScene" id=18]
+[ext_resource path="res://actors/BossStartTriggerArea.tscn" type="PackedScene" id=19]
+[ext_resource path="res://objects/BoomstickPickup.tscn" type="PackedScene" id=20]
+[ext_resource path="res://actors/EnemySnail.tscn" type="PackedScene" id=21]
 
 [sub_resource type="Curve2D" id=1]
 
@@ -44,7 +47,7 @@ func _on_DarknessArea2D_body_exited(body):
 		body.toggle_light(false)
 "
 
-[node name="Level_1" type="Node2D"]
+[node name="Level_1" type="Node2D" index="0"]
 
 __meta__ = {
 "_edit_lock_": true
@@ -160,11 +163,11 @@ __meta__ = {
 
 [node name="JetpackPickup" parent="." index="3" instance=ExtResource( 9 )]
 
-position = Vector2( 7728.89, -955.141 )
+position = Vector2( 13960.3, -979.108 )
 
 [node name="Player" parent="." index="4" instance=ExtResource( 10 )]
 
-position = Vector2( 7927.1, -2307.37 )
+position = Vector2( 16134.7, -1003.43 )
 
 [node name="Camera2D" type="Camera2D" parent="Player" index="2"]
 
@@ -277,7 +280,6 @@ __meta__ = {
 
 [node name="Castle" type="Node2D" parent="ForegroundStaticObjects" index="4"]
 
-editor/display_folded = true
 __meta__ = {
 "_edit_lock_": true
 }
@@ -290,20 +292,40 @@ position = Vector2( 14629.8, -978.831 )
 
 position = Vector2( 15329.2, -979.667 )
 
+[node name="Key_Blue" parent="ForegroundStaticObjects/Castle/Gate_Yellow2" index="3" instance=ExtResource( 17 )]
+
+position = Vector2( 1019.11, -1302.35 )
+
+[node name="Key_Blue2" parent="ForegroundStaticObjects/Castle/Gate_Yellow2" index="4" instance=ExtResource( 17 )]
+
+position = Vector2( -981.801, 18.5807 )
+
+[node name="FinalSpiderBoss" parent="ForegroundStaticObjects/Castle" index="2" instance=ExtResource( 18 )]
+
+position = Vector2( 17130.3, -1394.12 )
+
+[node name="BossStartTriggerArea" parent="ForegroundStaticObjects/Castle" index="3" instance=ExtResource( 19 )]
+
+position = Vector2( 16643.6, -1141.24 )
+boss_node_path = NodePath("../FinalSpiderBoss")
+
 [node name="BoomstickTower" type="Node2D" parent="ForegroundStaticObjects" index="5"]
 
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="BoomstickPickup" parent="ForegroundStaticObjects/BoomstickTower" index="0" instance=ExtResource( 17 )]
+[node name="BoomstickPickup" parent="ForegroundStaticObjects/BoomstickTower" index="0" instance=ExtResource( 20 )]
 
 position = Vector2( 8125.64, -2347.8 )
 
-[node name="EnemySnail" parent="ForegroundStaticObjects/BoomstickTower" index="1" instance=ExtResource( 18 )]
+[node name="BoomstickPickup2" parent="ForegroundStaticObjects/BoomstickTower" index="1" instance=ExtResource( 20 )]
 
-position = Vector2( 9236.46, -891.988 )
-scale = Vector2( 3, 3 )
+position = Vector2( 13793.8, -969.708 )
+
+[node name="EnemySnail" parent="ForegroundStaticObjects/BoomstickTower" index="2" instance=ExtResource( 21 )]
+
+position = Vector2( 9324.96, -818.601 )
 _sections_unfolded = [ "Collision", "Transform", "collision" ]
 
 [node name="ForegroundTileMap" type="TileMap" parent="." index="7"]
