@@ -38,7 +38,7 @@ func actor_behavior(delta):
 	
 	
 	if is_on_floor() and down_ray.is_colliding() == false:
-		print('found ledge')
+		#print('found ledge')
 		vel.x = 0
 		sprite.flip_h = not sprite.flip_h
 		ray_pivot.scale.x = ray_pivot.scale.x * -1
